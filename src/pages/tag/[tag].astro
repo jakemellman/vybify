@@ -15,11 +15,11 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
-const projects = await withStars(await getCollection('projects'));
-const skills = await withStars(await getCollection('skills'));
+const projects = (await withStars(await getCollection('projects'))).map((e) => ({ ...e, _type: 'project' as const }));
+const skills = (await withStars(await getCollection('skills'))).map((e) => ({ ...e, _type: 'skill' as const }));
 
 const matches = [...projects, ...skills]
-  .filter((e) => e.data.tags.map((t) => t.toLowerCase()).includes(tag!))
+  .filter((e) => e.data.tags.map((t: string) => t.toLowerCase()).includes(tag!))
   .sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1));
 ---
 
@@ -40,11 +40,13 @@ const matches = [...projects, ...skills]
         rank={i + 1}
         name={entry.data.name}
         tagline={entry.data.tagline}
+        href={`/${entry._type === 'project' ? 'projects' : 'skills'}/${entry.id}`}
         url={entry.data.url}
         github={entry.data.github}
         author={entry.data.author}
         tags={entry.data.tags}
         stars={entry.stars}
+        delta7d={entry.delta7d}
         featured={entry.data.featured}
       />
     ))}

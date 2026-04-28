@@ -145,31 +145,35 @@ const searchIndex = entries.map((e) => ({
   )}
 
   <div id="vyb-grid" class="grid md:grid-cols-2 gap-4">
-    {entries.map((e) => (
-      <div
-        class="vyb-card"
-        data-id={e._id}
-        data-type={e._type}
-        data-stars={e.stars ?? -1}
-        data-delta={e.delta7d ?? 0}
-        data-added={e.data.addedAt}
-        data-name={e.data.name.toLowerCase()}
-        data-tags={(e.data.tags ?? []).map((t: string) => t.toLowerCase()).join('|')}
-      >
-        <Card
-          name={e.data.name}
-          tagline={e.data.tagline}
-          url={e.data.url}
-          github={e.data.github}
-          author={e.data.author}
-          tags={e.data.tags ?? []}
-          stars={e.stars}
-          delta7d={e.delta7d}
-          badge={e.badge}
-          featured={e.data.featured}
-        />
-      </div>
-    ))}
+    {entries.map((e) => {
+      const detailHref = `/${e._type === 'project' ? 'projects' : 'skills'}/${e._id.slice(2)}`;
+      return (
+        <div
+          class="vyb-card"
+          data-id={e._id}
+          data-type={e._type}
+          data-stars={e.stars ?? -1}
+          data-delta={e.delta7d ?? 0}
+          data-added={e.data.addedAt}
+          data-name={e.data.name.toLowerCase()}
+          data-tags={(e.data.tags ?? []).map((t: string) => t.toLowerCase()).join('|')}
+        >
+          <Card
+            name={e.data.name}
+            tagline={e.data.tagline}
+            href={detailHref}
+            url={e.data.url}
+            github={e.data.github}
+            author={e.data.author}
+            tags={e.data.tags ?? []}
+            stars={e.stars}
+            delta7d={e.delta7d}
+            badge={e.badge}
+            featured={e.data.featured}
+          />
+        </div>
+      );
+    })}
   </div>
 
   <p id="vyb-empty" class="hidden text-center text-[var(--color-fg-muted)] py-12">

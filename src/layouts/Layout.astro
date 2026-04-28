@@ -10,6 +10,8 @@ const {
   title = 'vybify — discover vibe-coded projects & skills',
   description = 'A curated directory of projects and skills built with AI coding tools.',
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://vybify.com').href;
 ---
 
 <!doctype html>
@@ -22,7 +24,8 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.site?.href ?? 'https://vybify.com'} />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
