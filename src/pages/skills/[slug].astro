@@ -45,37 +45,46 @@ const kindLabel: Record<string, string> = {
 };
 ---
 
-<Layout title={`${data.name} · vybify`} description={description}>
-  <a href="/skills" class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition inline-flex items-center gap-1 mb-8">
+<Layout title={`${data.name} · Vybify`} description={description}>
+  <a href="/skills" class="eyebrow inline-flex items-center gap-2 mb-12 hover:text-[var(--color-accent)] transition">
     <span aria-hidden="true">←</span> All skills
   </a>
 
-  <article class="max-w-3xl">
-    <header class="mb-10">
-      <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-fg-muted)] mb-3">
-        <span>{kindLabel[data.kind] ?? 'Skill'}</span>
+  <article class="grid md:grid-cols-12 gap-x-8 gap-y-10">
+    <header class="md:col-span-12 pb-10 border-b-2 border-[var(--color-fg)]">
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="eyebrow">{kindLabel[data.kind] ?? 'Skill'}</span>
         {data.featured && (
-          <span class="text-[var(--color-accent-2)]">· Featured</span>
+          <>
+            <span class="text-[var(--color-fg-faint)]">·</span>
+            <span class="eyebrow text-[var(--color-accent)]">Featured</span>
+          </>
         )}
       </div>
 
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">{data.name}</h1>
-      <p class="text-xl text-[var(--color-fg-muted)] leading-relaxed mb-8">{data.tagline}</p>
+      <h1 class="display text-6xl md:text-8xl leading-[0.95] tracking-tight mb-6">
+        {data.name}
+      </h1>
+      <p class="display-italic text-2xl md:text-3xl text-[var(--color-fg-muted)] leading-snug max-w-3xl drop-cap">
+        {data.tagline}
+      </p>
 
       {data.install && (
-        <div class="mb-6">
+        <div class="mt-10 max-w-2xl">
           <CopyableCommand command={data.install} label="Install" />
         </div>
       )}
 
-      <div class="flex flex-wrap gap-3">
+      <div class="flex flex-wrap gap-3 mt-6">
         <a
           href={data.url}
           target="_blank"
           rel="noopener"
-          class={`inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${data.install ? 'bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-accent)]/60' : 'bg-[var(--color-accent)] text-[#0a0a0f] hover:opacity-90'}`}
+          class={`inline-flex items-center gap-2 px-5 py-2.5 transition ${data.install
+            ? 'border border-[var(--color-fg)] hover:bg-[var(--color-fg)] hover:text-[var(--color-paper)]'
+            : 'bg-[var(--color-fg)] text-[var(--color-paper)] hover:bg-[var(--color-accent)]'}`}
         >
-          Open {data.name}
+          <span>Open {data.name}</span>
           <span aria-hidden="true">↗</span>
         </a>
         {data.github && (
@@ -83,50 +92,54 @@ const kindLabel: Record<string, string> = {
             href={`https://github.com/${data.github}`}
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-accent)]/60 transition"
+            class="inline-flex items-center gap-2 px-5 py-2.5 border border-[var(--color-fg)] hover:bg-[var(--color-fg)] hover:text-[var(--color-paper)] transition"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
             </svg>
-            View on GitHub
+            <span>View on GitHub</span>
           </a>
         )}
       </div>
     </header>
 
-    <section class="grid sm:grid-cols-2 gap-4 mb-10">
-      <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
-        <div class="text-xs uppercase tracking-widest text-[var(--color-fg-muted)] mb-1">Stars</div>
-        <div class="font-mono text-2xl">
+    <aside class="md:col-span-4 md:order-2 md:sticky md:top-8 md:self-start space-y-6">
+      <div class="border-t border-[var(--color-fg)] pt-4">
+        <p class="label mb-2">Stars</p>
+        <p class="display tnum text-4xl">
           {formatStars(stars)}
-          {deltaStr && (
-            <span class="text-base text-[var(--color-accent-2)] ml-2">{deltaStr} (7d)</span>
-          )}
-        </div>
+          <span class="text-[var(--color-fg-muted)] text-2xl">★</span>
+        </p>
+        {deltaStr && (
+          <p class="font-mono text-sm text-[var(--color-accent-2)] mt-1">{deltaStr} in 7 days</p>
+        )}
       </div>
-      <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
-        <div class="text-xs uppercase tracking-widest text-[var(--color-fg-muted)] mb-1">Type</div>
-        <div class="font-medium">{kindLabel[data.kind] ?? 'Skill'}</div>
+
+      <div class="border-t border-[var(--color-border)] pt-4">
+        <p class="label mb-2">Type</p>
+        <p class="text-lg">{kindLabel[data.kind] ?? 'Skill'}</p>
       </div>
+
       {data.author && (
-        <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
-          <div class="text-xs uppercase tracking-widest text-[var(--color-fg-muted)] mb-1">Author</div>
-          <div class="font-medium">{data.author}</div>
+        <div class="border-t border-[var(--color-border)] pt-4">
+          <p class="label mb-2">Made by</p>
+          <p class="text-lg">{data.author}</p>
         </div>
       )}
-      <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
-        <div class="text-xs uppercase tracking-widest text-[var(--color-fg-muted)] mb-1">Added</div>
-        <div class="font-medium font-mono">{data.addedAt}</div>
-      </div>
-    </section>
 
-    <section class="mb-12">
-      <div class="text-xs uppercase tracking-widest text-[var(--color-fg-muted)] mb-3">Tags</div>
-      <div class="flex flex-wrap gap-2">
+      <div class="border-t border-[var(--color-border)] pt-4">
+        <p class="label mb-2">Catalogued</p>
+        <p class="font-mono tnum text-sm text-[var(--color-fg-muted)]">{data.addedAt}</p>
+      </div>
+    </aside>
+
+    <section class="md:col-span-8 md:order-1">
+      <p class="label mb-4">Tags</p>
+      <div class="flex flex-wrap gap-x-4 gap-y-2 mb-12">
         {data.tags.map((tag: string) => (
           <a
             href={`/tag/${encodeURIComponent(tag.toLowerCase())}`}
-            class="px-2.5 py-1 rounded-full text-sm border border-[var(--color-border)] text-[var(--color-fg-muted)] hover:border-[var(--color-accent)]/60 hover:text-[var(--color-accent)] transition"
+            class="text-base italic text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
           >
             #{tag}
           </a>
@@ -136,9 +149,10 @@ const kindLabel: Record<string, string> = {
   </article>
 
   {related.length > 0 && (
-    <section class="border-t border-[var(--color-border)] pt-10 mt-10">
-      <h2 class="text-xl font-semibold mb-6">Related</h2>
-      <div class="grid md:grid-cols-2 gap-4">
+    <section class="mt-20 pt-12 border-t-2 border-[var(--color-fg)]">
+      <p class="eyebrow mb-2">Read next</p>
+      <h2 class="display text-3xl md:text-4xl mb-6">Related entries</h2>
+      <div class="border-t-2 border-[var(--color-fg)]">
         {related.map((r) => (
           <Card
             name={r.data.name}

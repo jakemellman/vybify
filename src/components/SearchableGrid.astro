@@ -80,71 +80,63 @@ const searchIndex = entries.map((e) => ({
 
 <section class="vyb-search" data-default-type={type}>
   {showHeader && (
-    <div class="mb-6">
-      <div class="relative">
-        <svg
-          class="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-fg-muted)]"
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path d="m21 21-4.3-4.3" />
-        </svg>
+    <div class="mb-2">
+      <div class="relative pb-3 border-b-2 border-[var(--color-fg)]">
         <input
           id="vyb-q"
           type="search"
-          placeholder="Search projects, skills, tags…"
+          placeholder="Search the field guide…"
           autocomplete="off"
-          class="w-full pl-10 pr-4 py-3 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] focus:border-[var(--color-accent)]/60 focus:outline-none text-base placeholder:text-[var(--color-fg-muted)] transition"
+          class="w-full bg-transparent border-0 focus:outline-none text-2xl md:text-3xl placeholder:text-[var(--color-fg-faint)] py-2 pr-10"
         />
+        <kbd class="hidden md:inline absolute right-0 top-1/2 -translate-y-1/2 font-mono text-xs px-2 py-1 border border-[var(--color-border)] text-[var(--color-fg-muted)] rounded">
+          /
+        </kbd>
       </div>
 
-      <div class="flex flex-wrap items-center gap-3 mt-4">
-        <div
-          class="vyb-type inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-sm"
-          role="tablist"
-        >
-          <button data-type="all" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition">All</button>
-          <button data-type="project" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition border-l border-[var(--color-border)]">Projects</button>
-          <button data-type="skill" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition border-l border-[var(--color-border)]">Skills</button>
+      <div class="flex flex-wrap items-baseline gap-x-6 gap-y-3 mt-5">
+        <div class="vyb-type flex items-baseline gap-3" role="tablist">
+          <span class="label">Show</span>
+          <button data-type="all" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">All</button>
+          <span class="text-[var(--color-fg-faint)]" aria-hidden="true">·</span>
+          <button data-type="project" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">Projects</button>
+          <span class="text-[var(--color-fg-faint)]" aria-hidden="true">·</span>
+          <button data-type="skill" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">Skills</button>
         </div>
 
-        <div
-          class="vyb-sort inline-flex rounded-lg border border-[var(--color-border)] overflow-hidden text-sm"
-          role="tablist"
-        >
-          <button data-sort="stars" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition">Stars</button>
-          <button data-sort="rising" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition border-l border-[var(--color-border)]">Rising</button>
-          <button data-sort="recent" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition border-l border-[var(--color-border)]">Recent</button>
-          <button data-sort="alpha" class="px-3 py-1.5 hover:bg-[var(--color-surface)] transition border-l border-[var(--color-border)]">A–Z</button>
+        <div class="vyb-sort flex items-baseline gap-3" role="tablist">
+          <span class="label">Sort</span>
+          <button data-sort="stars" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">Stars</button>
+          <span class="text-[var(--color-fg-faint)]" aria-hidden="true">·</span>
+          <button data-sort="rising" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">Rising</button>
+          <span class="text-[var(--color-fg-faint)]" aria-hidden="true">·</span>
+          <button data-sort="recent" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">Recent</button>
+          <span class="text-[var(--color-fg-faint)]" aria-hidden="true">·</span>
+          <button data-sort="alpha" class="vyb-pill text-base hover:text-[var(--color-accent)] transition">A–Z</button>
         </div>
 
-        <span id="vyb-count" class="ml-auto text-sm text-[var(--color-fg-muted)] font-mono">
-          {entries.length}
+        <span class="ml-auto label tnum">
+          <span id="vyb-count">{entries.length}</span> entries
         </span>
       </div>
 
-      <div class="vyb-tags flex flex-wrap gap-2 mt-4">
-        {topTags.map((t) => (
-          <button
-            data-tag={t}
-            class="px-2.5 py-1 rounded-full text-xs border border-[var(--color-border)] text-[var(--color-fg-muted)] hover:border-[var(--color-accent)]/60 hover:text-[var(--color-accent)] transition"
-          >
-            #{t}
-          </button>
-        ))}
-      </div>
+      {topTags.length > 0 && (
+        <div class="vyb-tags flex flex-wrap gap-x-3 gap-y-1 mt-4 text-sm">
+          <span class="label self-baseline mr-1">Topics</span>
+          {topTags.map((t) => (
+            <button
+              data-tag={t}
+              class="italic text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
+            >
+              #{t}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )}
 
-  <div id="vyb-grid" class="grid md:grid-cols-2 gap-4">
+  <div id="vyb-grid" class="mt-6 border-t-2 border-[var(--color-fg)]">
     {entries.map((e) => {
       const detailHref = `/${e._type === 'project' ? 'projects' : 'skills'}/${e._id.slice(2)}`;
       return (
@@ -176,8 +168,8 @@ const searchIndex = entries.map((e) => ({
     })}
   </div>
 
-  <p id="vyb-empty" class="hidden text-center text-[var(--color-fg-muted)] py-12">
-    No matches. Try a different search or clear filters.
+  <p id="vyb-empty" class="hidden display-italic text-center text-[var(--color-fg-muted)] py-16 text-2xl">
+    No matches in this issue. Try a different search.
   </p>
 </section>
 
@@ -221,9 +213,10 @@ const searchIndex = entries.map((e) => ({
         const v = (btn.dataset[group.replace('vyb-', '')] || '') as string;
         const isActive = v === value;
         btn.dataset.active = isActive ? 'true' : 'false';
-        btn.classList.toggle('bg-[var(--color-accent)]', isActive);
-        btn.classList.toggle('text-[#0a0a0f]', isActive);
-        btn.classList.toggle('font-medium', isActive);
+        btn.classList.toggle('text-[var(--color-accent)]', isActive);
+        btn.classList.toggle('italic', isActive);
+        btn.classList.toggle('underline', isActive);
+        btn.classList.toggle('underline-offset-4', isActive);
       });
     }
 
@@ -308,13 +301,21 @@ const searchIndex = entries.map((e) => ({
         const t = btn.dataset.tag!;
         if (activeTags.has(t)) {
           activeTags.delete(t);
-          btn.classList.remove('bg-[var(--color-accent)]/15', 'text-[var(--color-accent)]', 'border-[var(--color-accent)]/60');
+          btn.classList.remove('text-[var(--color-accent)]', 'underline', 'underline-offset-4');
         } else {
           activeTags.add(t);
-          btn.classList.add('bg-[var(--color-accent)]/15', 'text-[var(--color-accent)]', 'border-[var(--color-accent)]/60');
+          btn.classList.add('text-[var(--color-accent)]', 'underline', 'underline-offset-4');
         }
         applyFilter();
       });
+    });
+
+    // Keyboard shortcut: '/' focuses search
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        input?.focus();
+      }
     });
 
     // Initial active state

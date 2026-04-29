@@ -18,58 +18,90 @@ interface Props {
 
 const { rank, name, tagline, href, url, github, author, tags, stars, delta7d, badge, featured } = Astro.props;
 const deltaLabel = formatDelta(delta7d ?? null);
+const starsStr = formatStars(stars);
+
+const toRoman = (n: number): string => {
+  const map: [number, string][] = [
+    [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I'],
+  ];
+  let r = '';
+  let v = n;
+  for (const [num, ch] of map) {
+    while (v >= num) {
+      r += ch;
+      v -= num;
+    }
+  }
+  return r;
+};
+
+const rankLabel = rank !== undefined ? toRoman(rank) : null;
 ---
 
 <article
   class:list={[
-    'group relative rounded-xl border p-5 transition',
-    'bg-[var(--color-surface)] border-[var(--color-border)]',
-    'hover:border-[var(--color-accent)]/60 hover:bg-[var(--color-surface-2)]',
-    featured ? 'ring-1 ring-[var(--color-accent)]/40' : '',
+    'vyb-row group relative grid grid-cols-[2.5rem_1fr_auto] sm:grid-cols-[3rem_1fr_auto] gap-x-4 sm:gap-x-6 py-5 border-b border-[var(--color-border)] transition',
+    featured ? 'bg-[var(--color-paper)]' : '',
+    'hover:bg-[var(--color-paper)]',
   ]}
 >
-  <a href={href} class="absolute inset-0 rounded-xl" aria-label={name}></a>
+  <a href={href} class="absolute inset-0" aria-label={name}></a>
 
-  <div class="relative pointer-events-none flex items-start justify-between gap-3 mb-2">
-    <div class="flex items-center gap-3 min-w-0">
-      {rank !== undefined && (
-        <span class="font-mono text-xs text-[var(--color-fg-muted)] tabular-nums w-6 shrink-0">
-          {String(rank).padStart(2, '0')}
-        </span>
-      )}
-      <h3 class="text-lg font-semibold truncate group-hover:text-[var(--color-accent)] transition">
+  <div class="relative pointer-events-none">
+    <span class="block label tnum pt-1 leading-none">
+      {rankLabel ?? '·'}
+    </span>
+    {featured && (
+      <span class="block label text-[var(--color-accent)] mt-2 leading-none">
+        Featured
+      </span>
+    )}
+  </div>
+
+  <div class="relative pointer-events-none min-w-0">
+    <div class="flex items-baseline gap-3 flex-wrap">
+      <h3 class="display text-2xl md:text-[28px] font-medium leading-tight text-[var(--color-fg)] group-hover:text-[var(--color-accent)] transition">
         {name}
       </h3>
       {badge && (
-        <span class="text-[10px] uppercase tracking-widest px-1.5 py-0.5 rounded bg-[var(--color-accent-2)]/10 text-[var(--color-accent-2)] border border-[var(--color-accent-2)]/30 shrink-0">
-          {badge}
+        <span class="label text-[var(--color-accent-2)]">
+          [{badge}]
         </span>
       )}
     </div>
-    <div class="flex items-center gap-1 text-sm text-[var(--color-fg-muted)] shrink-0 font-mono">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2l2.9 6.9L22 10l-5.5 4.8L18 22l-6-3.6L6 22l1.5-7.2L2 10l7.1-1.1L12 2z" />
-      </svg>
-      <span>{formatStars(stars)}</span>
-      {deltaLabel && (
-        <span class="ml-1 text-[var(--color-accent-2)]">{deltaLabel}</span>
+
+    <p class="mt-1.5 text-base text-[var(--color-fg-soft)] leading-snug max-w-prose">
+      {tagline}
+    </p>
+
+    <div class="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm">
+      <div class="relative pointer-events-auto flex flex-wrap gap-1.5">
+        {tags.slice(0, 4).map((tag) => (
+          <a
+            href={`/tag/${encodeURIComponent(tag.toLowerCase())}`}
+            class="text-[var(--color-fg-muted)] italic hover:text-[var(--color-accent)] transition"
+          >
+            #{tag}
+          </a>
+        ))}
+      </div>
+      {author && (
+        <span class="ml-auto text-[var(--color-fg-faint)] italic text-sm pointer-events-none">
+          by {author}
+        </span>
       )}
     </div>
   </div>
 
-  <p class="relative pointer-events-none text-sm text-[var(--color-fg-muted)] mb-4 line-clamp-2">{tagline}</p>
-
-  <div class="relative flex flex-wrap items-center gap-2 text-xs">
-    {tags.slice(0, 4).map((tag) => (
-      <a
-        href={`/tag/${encodeURIComponent(tag.toLowerCase())}`}
-        class="px-2 py-0.5 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/50 transition"
-      >
-        {tag}
-      </a>
-    ))}
-    {author && (
-      <span class="ml-auto text-[var(--color-fg-muted)] pointer-events-none">by {author}</span>
+  <div class="relative pointer-events-none flex flex-col items-end justify-start gap-1 text-right">
+    <div class="font-mono text-sm tnum text-[var(--color-fg)]">
+      {starsStr}
+      <span class="text-[var(--color-fg-muted)]">★</span>
+    </div>
+    {deltaLabel && (
+      <div class="font-mono text-xs tnum text-[var(--color-accent-2)]">
+        {deltaLabel} 7d
+      </div>
     )}
   </div>
 </article>

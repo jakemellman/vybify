@@ -8,19 +8,34 @@ const skills = await getCollection('skills');
 ---
 
 <Layout>
-  <section class="mb-12">
-    <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-4">
-      Discover what's been
-      <span class="text-[var(--color-accent)]">vibe-coded</span>.
-    </h1>
-    <p class="text-lg text-[var(--color-fg-muted)] max-w-2xl mb-6">
-      A living directory of projects and skills built with AI coding tools.
-      Ranked by GitHub stars, refreshed daily.
-    </p>
-    <div class="flex flex-wrap gap-6 text-sm text-[var(--color-fg-muted)] font-mono">
-      <span><strong class="text-[var(--color-fg)]">{projects.length}</strong> projects</span>
-      <span><strong class="text-[var(--color-fg)]">{skills.length}</strong> skills</span>
+  <section class="grid md:grid-cols-12 gap-8 mb-16 pb-10 border-b border-[var(--color-border)]">
+    <div class="md:col-span-8">
+      <p class="eyebrow mb-4">The lede</p>
+      <h1 class="display text-5xl md:text-7xl mb-6 leading-[0.95]">
+        A field guide to the things people are <span class="text-[var(--color-accent)]">vibe-coding</span> with AI.
+      </h1>
+      <p class="display-italic text-2xl md:text-3xl text-[var(--color-fg-muted)] leading-snug max-w-2xl">
+        Projects, skills, and small tools — collected, ranked, and updated daily.
+      </p>
     </div>
+
+    <aside class="md:col-span-4 md:border-l md:pl-8 border-[var(--color-border)] flex flex-col justify-end">
+      <p class="label mb-3">In this issue</p>
+      <dl class="space-y-2 text-base">
+        <div class="flex items-baseline justify-between border-b border-[var(--color-rule)] pb-2">
+          <dt>Projects</dt>
+          <dd class="font-mono tnum">{projects.length}</dd>
+        </div>
+        <div class="flex items-baseline justify-between border-b border-[var(--color-rule)] pb-2">
+          <dt>Skills &amp; tools</dt>
+          <dd class="font-mono tnum">{skills.length}</dd>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <dt>Refreshed</dt>
+          <dd class="font-mono tnum text-[var(--color-fg-muted)]">daily</dd>
+        </div>
+      </dl>
+    </aside>
   </section>
 
   <SearchableGrid type="all" />

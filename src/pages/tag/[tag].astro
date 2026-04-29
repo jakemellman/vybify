@@ -23,18 +23,22 @@ const matches = [...projects, ...skills]
   .sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1));
 ---
 
-<Layout title={`#${tag} · vybify`}>
-  <section class="mb-10">
-    <a href="/" class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition">← All</a>
-    <h1 class="text-4xl font-bold tracking-tight mt-3 mb-2">
+<Layout title={`#${tag} · Vybify`}>
+  <a href="/" class="eyebrow inline-flex items-center gap-2 mb-12 hover:text-[var(--color-accent)] transition">
+    <span aria-hidden="true">←</span> Back to the index
+  </a>
+
+  <section class="mb-10 pb-8 border-b-2 border-[var(--color-fg)]">
+    <p class="eyebrow mb-3">Topic</p>
+    <h1 class="display text-6xl md:text-7xl tracking-tight">
       <span class="text-[var(--color-accent)]">#</span>{tag}
     </h1>
-    <p class="text-[var(--color-fg-muted)]">
-      {matches.length} {matches.length === 1 ? 'entry' : 'entries'} tagged.
+    <p class="display-italic text-xl text-[var(--color-fg-muted)] mt-3">
+      {matches.length} {matches.length === 1 ? 'entry' : 'entries'} carry this topic.
     </p>
   </section>
 
-  <div class="grid md:grid-cols-2 gap-4">
+  <div>
     {matches.map((entry, i) => (
       <Card
         rank={i + 1}
