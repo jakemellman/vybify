@@ -35,7 +35,7 @@ const issueDate = new Date().toLocaleDateString('en-US', {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -54,15 +54,15 @@ const issueDate = new Date().toLocaleDateString('en-US', {
             <span class="display text-6xl md:text-7xl tracking-tight leading-none">
               Vybify
             </span>
-            <span class="display-italic text-2xl text-[var(--color-fg-muted)] hidden md:inline">
-              &mdash; the field guide
+            <span class="text-base text-[var(--color-fg-muted)] hidden md:inline">
+              The field guide
             </span>
           </a>
           <nav class="flex items-baseline gap-6 text-base">
             <a href="/" class="hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)]">All</a>
             <a href="/projects" class="hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)]">Projects</a>
             <a href="/skills" class="hover:text-[var(--color-accent)] transition border-b border-transparent hover:border-[var(--color-accent)]">Skills</a>
-            <a href="/submit" class="text-[var(--color-accent)] italic hover:underline">
+            <a href="/submit" class="text-[var(--color-accent)] font-medium hover:underline">
               Submit&nbsp;→
             </a>
           </nav>
@@ -76,7 +76,7 @@ const issueDate = new Date().toLocaleDateString('en-US', {
 
     <footer class="mt-32 border-t-2 border-[var(--color-fg)]">
       <div class="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row items-baseline justify-between gap-3">
-        <p class="display-italic text-xl">Vybify, an editorial directory.</p>
+        <p class="display text-2xl">Vybify</p>
         <div class="eyebrow flex gap-4">
           <a href="/submit" class="hover:text-[var(--color-accent)] transition">Submit a piece</a>
           <span aria-hidden="true">·</span>

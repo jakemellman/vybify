@@ -75,18 +75,18 @@ const rankLabel = rank !== undefined ? toRoman(rank) : null;
     </p>
 
     <div class="mt-3 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm">
-      <div class="relative pointer-events-auto flex flex-wrap gap-1.5">
+      <div class="relative pointer-events-auto flex flex-wrap gap-x-3 gap-y-1">
         {tags.slice(0, 4).map((tag) => (
           <a
             href={`/tag/${encodeURIComponent(tag.toLowerCase())}`}
-            class="text-[var(--color-fg-muted)] italic hover:text-[var(--color-accent)] transition"
+            class="text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
           >
             #{tag}
           </a>
         ))}
       </div>
       {author && (
-        <span class="ml-auto text-[var(--color-fg-faint)] italic text-sm pointer-events-none">
+        <span class="ml-auto text-[var(--color-fg-faint)] text-sm pointer-events-none">
           by {author}
         </span>
       )}

@@ -56,7 +56,7 @@ const description = data.tagline;
       <h1 class="display text-6xl md:text-8xl leading-[0.95] tracking-tight mb-6">
         {data.name}
       </h1>
-      <p class="display-italic text-2xl md:text-3xl text-[var(--color-fg-muted)] leading-snug max-w-3xl drop-cap">
+      <p class="lede text-xl md:text-2xl max-w-3xl">
         {data.tagline}
       </p>
 
@@ -108,7 +108,7 @@ const description = data.tagline;
       {data.builtWith && data.builtWith.length > 0 && (
         <div class="border-t border-[var(--color-border)] pt-4">
           <p class="label mb-2">Built with</p>
-          <p class="text-lg display-italic">{data.builtWith.join(', ')}</p>
+          <p class="text-lg">{data.builtWith.join(', ')}</p>
         </div>
       )}
 
@@ -124,7 +124,7 @@ const description = data.tagline;
         {data.tags.map((tag: string) => (
           <a
             href={`/tag/${encodeURIComponent(tag.toLowerCase())}`}
-            class="text-base italic text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
+            class="text-base text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
           >
             #{tag}
           </a>

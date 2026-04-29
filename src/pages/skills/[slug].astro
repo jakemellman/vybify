@@ -65,7 +65,7 @@ const kindLabel: Record<string, string> = {
       <h1 class="display text-6xl md:text-8xl leading-[0.95] tracking-tight mb-6">
         {data.name}
       </h1>
-      <p class="display-italic text-2xl md:text-3xl text-[var(--color-fg-muted)] leading-snug max-w-3xl drop-cap">
+      <p class="lede text-xl md:text-2xl max-w-3xl">
         {data.tagline}
       </p>
 
@@ -139,7 +139,7 @@ const kindLabel: Record<string, string> = {
         {data.tags.map((tag: string) => (
           <a
             href={`/tag/${encodeURIComponent(tag.toLowerCase())}`}
-            class="text-base italic text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
+            class="text-base text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
           >
             #{tag}
           </a>

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Newsreader", "Iowan Old Style", "Hoefler Text", Georgia, serif;
+  --font-display: "Newsreader", "Iowan Old Style", "Hoefler Text", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 
   /* Newsprint-inspired warm palette */
@@ -27,16 +28,15 @@
 html {
   background: var(--color-bg);
   color: var(--color-fg);
-  font-family: var(--font-serif);
-  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+  font-family: var(--font-sans);
+  font-feature-settings: "kern" 1, "liga" 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.55;
-  font-variation-settings: "opsz" 14;
   min-height: 100dvh;
   position: relative;
 }
@@ -64,7 +64,7 @@ main, header, footer {
 
 /* Editorial display utilities */
 .display {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-variation-settings: "opsz" 60;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -72,10 +72,20 @@ main, header, footer {
 }
 
 .display-italic {
-  font-variation-settings: "opsz" 60;
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 36;
   font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+.lede {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--color-fg-soft);
 }
 
 .eyebrow {
@@ -106,17 +116,6 @@ main, header, footer {
   margin: 0;
 }
 
-/* Drop cap for detail pages */
-.drop-cap::first-letter {
-  font-variation-settings: "opsz" 84;
-  font-weight: 500;
-  font-size: 5em;
-  float: left;
-  line-height: 0.85;
-  margin: 0.05em 0.08em 0 -0.04em;
-  color: var(--color-accent);
-}
-
 /* Tabular number display */
 .tnum {
   font-variant-numeric: tabular-nums;
@@ -124,6 +123,5 @@ main, header, footer {
 
 input[type="search"],
 input[type="text"] {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-sans);
 }

@@ -126,7 +126,7 @@ const searchIndex = entries.map((e) => ({
           {topTags.map((t) => (
             <button
               data-tag={t}
-              class="italic text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
+              class="text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition"
             >
               #{t}
             </button>
@@ -168,7 +168,7 @@ const searchIndex = entries.map((e) => ({
     })}
   </div>
 
-  <p id="vyb-empty" class="hidden display-italic text-center text-[var(--color-fg-muted)] py-16 text-2xl">
+  <p id="vyb-empty" class="hidden text-center text-[var(--color-fg-muted)] py-16 text-lg">
     No matches in this issue. Try a different search.
   </p>
 </section>
@@ -214,7 +214,7 @@ const searchIndex = entries.map((e) => ({
         const isActive = v === value;
         btn.dataset.active = isActive ? 'true' : 'false';
         btn.classList.toggle('text-[var(--color-accent)]', isActive);
-        btn.classList.toggle('italic', isActive);
+        btn.classList.toggle('font-medium', isActive);
         btn.classList.toggle('underline', isActive);
         btn.classList.toggle('underline-offset-4', isActive);
       });
