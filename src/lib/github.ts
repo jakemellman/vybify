@@ -66,24 +66,54 @@ function compute7dDelta(history: HistoryEntry[] | undefined, currentStars: numbe
 /**
  * In-flight request dedupe. Multiple concurrent calls for the same repo
  * share a single fetch promise — critical when many entries share a repo
- * (e.g., 14 entries from anthropics/skills) so we don't fire 14 redundant
- * API calls and trigger GitHub's secondary rate limit.
+ * (e.g., 14 entries from anthropics/skills).
  */
 const inflight = new Map<string, Promise<number | null>>();
+
+/**
+ * Concurrency cap at the fetch level (process-wide). Astro builds many
+ * pages in parallel; each calls withStars; without a global cap they
+ * all fire fetches simultaneously and trigger GitHub's secondary rate
+ * limit. The slot-handoff pattern below avoids the over-acquisition
+ * race that plagued earlier attempts: on release we hand the slot
+ * directly to the next waiter without re-incrementing the counter.
+ */
+const MAX_CONCURRENT = 6;
+let activeCount = 0;
+const waitQueue: Array<() => void> = [];
+
+async function acquireSlot(): Promise<void> {
+  if (activeCount < MAX_CONCURRENT && waitQueue.length === 0) {
+    activeCount++;
+    return;
+  }
+  await new Promise<void>((resolve) => waitQueue.push(resolve));
+  // Slot was handed to us by releaseSlot (no increment needed; transferred).
+}
+
+function releaseSlot(): void {
+  const next = waitQueue.shift();
+  if (next) {
+    next();
+  } else {
+    activeCount--;
+  }
+}
 
 async function fetchStarsLive(repo: string): Promise<number | null> {
   const existing = inflight.get(repo);
   if (existing) return existing;
 
   const p = (async () => {
-    const token = process.env.GITHUB_TOKEN;
-    const headers: Record<string, string> = {
-      Accept: 'application/vnd.github+json',
-      'User-Agent': 'vybify-build',
-    };
-    if (token) headers.Authorization = `Bearer ${token}`;
-
+    await acquireSlot();
     try {
+      const token = process.env.GITHUB_TOKEN;
+      const headers: Record<string, string> = {
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'vybify-build',
+      };
+      if (token) headers.Authorization = `Bearer ${token}`;
+
       const res = await fetch(`https://api.github.com/repos/${repo}`, { headers });
       if (!res.ok) {
         console.warn(`[github] ${repo} → ${res.status}`);
@@ -94,6 +124,8 @@ async function fetchStarsLive(repo: string): Promise<number | null> {
     } catch (err) {
       console.warn(`[github] ${repo} fetch failed`, err);
       return null;
+    } finally {
+      releaseSlot();
     }
   })();
 
@@ -132,26 +164,12 @@ export async function getStarSnapshot(repo: string | undefined): Promise<StarSna
   return { stars, delta7d: compute7dDelta(history[repo], stars) };
 }
 
-/**
- * Process entries in small parallel batches. With ~80 unique repos
- * across 261 entries, dedupe collapses identical repos to a single
- * fetch — the batches just bound how many distinct repos hit GitHub
- * at once, well under the secondary rate limit.
- */
-const BATCH_SIZE = 12;
-
 export async function withStars<T extends { data: { github?: string } }>(
   entries: T[],
 ): Promise<Array<T & StarSnapshot>> {
-  const results: Array<T & StarSnapshot> = [];
-  for (let i = 0; i < entries.length; i += BATCH_SIZE) {
-    const batch = entries.slice(i, i + BATCH_SIZE);
-    const batchResults = await Promise.all(
-      batch.map(async (entry) => ({ ...entry, ...(await getStarSnapshot(entry.data.github)) })),
-    );
-    results.push(...batchResults);
-  }
-  return results;
+  return Promise.all(
+    entries.map(async (entry) => ({ ...entry, ...(await getStarSnapshot(entry.data.github)) })),
+  );
 }
 
 export function formatStars(n: number | null): string {
