@@ -1,0 +1,14 @@
+{
+  "name": "Find Skills",
+  "tagline": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express int",
+  "url": "https://skills.sh/vercel-labs/skills/find-skills",
+  "github": "vercel-labs/skills",
+  "author": "vercel-labs",
+  "tags": [
+    "claude-code",
+    "vercel-labs"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add vercel-labs/skills --skill find-skills",
+  "addedAt": "2026-04-30"
+}

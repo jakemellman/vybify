@@ -1,0 +1,17 @@
+{
+  "name": "Paid Ads",
+  "tagline": "When the user wants help with paid advertising campaigns on Google Ads, Meta (Facebook/Instagram), LinkedIn, Twitter/X, or other ad platforms. Also use when the",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/paid-ads",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill paid-ads",
+  "addedAt": "2026-04-30"
+}

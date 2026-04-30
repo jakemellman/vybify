@@ -1,0 +1,14 @@
+{
+  "name": "Design Md",
+  "tagline": "Analyze Stitch projects and synthesize a semantic design system into DESIGN.md files",
+  "url": "https://skills.sh/google-labs-code/stitch-skills/design-md",
+  "github": "google-labs-code/stitch-skills",
+  "author": "google-labs-code",
+  "tags": [
+    "claude-code",
+    "google-labs-code"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add google-labs-code/stitch-skills --skill design-md",
+  "addedAt": "2026-04-30"
+}

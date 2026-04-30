@@ -1,0 +1,17 @@
+{
+  "name": "Competitor Alternatives",
+  "tagline": "When the user wants to create competitor comparison or alternative pages for SEO and sales enablement. Also use when the user mentions 'alternative page,' 'vs p",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/competitor-alternatives",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill competitor-alternatives",
+  "addedAt": "2026-04-30"
+}

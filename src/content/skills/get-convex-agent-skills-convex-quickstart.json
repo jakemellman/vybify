@@ -1,0 +1,14 @@
+{
+  "name": "Convex Quickstart",
+  "tagline": "Creates or adds Convex to an app. Use for new Convex projects, npm create convex@latest, frontend setup, env vars, or the first npx convex dev run.",
+  "url": "https://skills.sh/get-convex/agent-skills/convex-quickstart",
+  "github": "get-convex/agent-skills",
+  "author": "get-convex",
+  "tags": [
+    "claude-code",
+    "get-convex"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add get-convex/agent-skills --skill convex-quickstart",
+  "addedAt": "2026-04-30"
+}

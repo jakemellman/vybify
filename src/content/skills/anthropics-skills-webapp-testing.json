@@ -1,0 +1,15 @@
+{
+  "name": "Webapp Testing",
+  "tagline": "Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing br",
+  "url": "https://skills.sh/anthropics/skills/webapp-testing",
+  "github": "anthropics/skills",
+  "author": "anthropics",
+  "tags": [
+    "claude-code",
+    "anthropics",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add anthropics/skills --skill webapp-testing",
+  "addedAt": "2026-04-30"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Churn Prevention",
+  "tagline": "When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies. Also use when the",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/churn-prevention",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill churn-prevention",
+  "addedAt": "2026-04-30"
+}

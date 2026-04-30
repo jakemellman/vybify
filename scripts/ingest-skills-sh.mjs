@@ -71,6 +71,7 @@ async function fetchRepo(repo) {
       description: data.description ?? null,
       stargazers_count: data.stargazers_count ?? null,
       topics: data.topics ?? [],
+      defaultBranch: data.default_branch ?? 'main',
     };
     repoCache.set(repo, out);
     return out;
@@ -78,6 +79,66 @@ async function fetchRepo(repo) {
     repoCache.set(repo, null);
     return null;
   }
+}
+
+/**
+ * Try common SKILL.md locations in a repo and return the parsed frontmatter
+ * description if found.
+ */
+async function fetchSkillDescription(owner, repo, skill, branch) {
+  const candidatePaths = [
+    `${skill}/SKILL.md`,
+    `skills/${skill}/SKILL.md`,
+    `agent-skills/${skill}/SKILL.md`,
+    `SKILL.md`,
+  ];
+
+  for (const path of candidatePaths) {
+    const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': 'vybify-ingest' } });
+      if (!res.ok) continue;
+      const md = await res.text();
+      const fm = parseFrontmatter(md);
+      if (fm?.description) return fm.description.trim();
+    } catch {
+      // try next
+    }
+  }
+  return null;
+}
+
+function parseFrontmatter(md) {
+  const m = md.match(/^---\s*\n([\s\S]*?)\n---/);
+  if (!m) return null;
+  const out = {};
+  let currentKey = null;
+  let multilineBuffer = [];
+  for (const rawLine of m[1].split('\n')) {
+    const line = rawLine.replace(/\r$/, '');
+    const kv = line.match(/^([\w-]+):\s*(.*)$/);
+    if (kv) {
+      // Flush previous multiline value
+      if (currentKey !== null && multilineBuffer.length) {
+        out[currentKey] = multilineBuffer.join(' ').trim();
+        multilineBuffer = [];
+      }
+      const [, key, valRaw] = kv;
+      const val = valRaw.trim().replace(/^["']|["']$/g, '');
+      if (val === '' || val === '|' || val === '>') {
+        currentKey = key;
+      } else {
+        out[key] = val;
+        currentKey = null;
+      }
+    } else if (currentKey !== null && line.trim()) {
+      multilineBuffer.push(line.trim());
+    }
+  }
+  if (currentKey !== null && multilineBuffer.length) {
+    out[currentKey] = multilineBuffer.join(' ').trim();
+  }
+  return out;
 }
 
 async function loadExisting() {
@@ -153,11 +214,21 @@ async function main() {
     const ghRepo = await fetchRepo(`${owner}/${repo}`);
     const installsNum = parseInstallsLabel(meta.installsLabel);
 
+    const skillDescription = await fetchSkillDescription(
+      owner,
+      repo,
+      skill,
+      ghRepo?.defaultBranch ?? 'main',
+    );
+
     const name = humanName(skill);
     const tagline = (
+      skillDescription ??
       ghRepo?.description ??
       `Skill ${skill} from ${owner}/${repo}.`
-    ).slice(0, 160);
+    )
+      .replace(/\s+/g, ' ')
+      .slice(0, 160);
 
     const entry = {
       name,

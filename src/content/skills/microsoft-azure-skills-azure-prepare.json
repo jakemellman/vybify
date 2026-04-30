@@ -1,0 +1,15 @@
+{
+  "name": "Azure Prepare",
+  "tagline": "Prepare Azure apps for deployment (infra Bicep/Terraform, azure.yaml, Dockerfiles). Use for create/modernize or create+deploy; not cross-cloud migration (use az",
+  "url": "https://skills.sh/microsoft/azure-skills/azure-prepare",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill azure-prepare",
+  "addedAt": "2026-04-30"
+}

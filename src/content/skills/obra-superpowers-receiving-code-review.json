@@ -1,0 +1,14 @@
+{
+  "name": "Receiving Code Review",
+  "tagline": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical ",
+  "url": "https://skills.sh/obra/superpowers/receiving-code-review",
+  "github": "obra/superpowers",
+  "author": "obra",
+  "tags": [
+    "claude-code",
+    "obra"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add obra/superpowers --skill receiving-code-review",
+  "addedAt": "2026-04-30"
+}

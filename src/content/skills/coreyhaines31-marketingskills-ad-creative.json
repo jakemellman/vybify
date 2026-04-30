@@ -1,0 +1,17 @@
+{
+  "name": "Ad Creative",
+  "tagline": "When the user wants to generate, iterate, or scale ad creative — headlines, descriptions, primary text, or full ad variations — for any paid advertising platfor",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/ad-creative",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill ad-creative",
+  "addedAt": "2026-04-30"
+}

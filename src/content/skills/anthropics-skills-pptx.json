@@ -1,0 +1,15 @@
+{
+  "name": "Pptx",
+  "tagline": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; rea",
+  "url": "https://skills.sh/anthropics/skills/pptx",
+  "github": "anthropics/skills",
+  "author": "anthropics",
+  "tags": [
+    "claude-code",
+    "anthropics",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add anthropics/skills --skill pptx",
+  "addedAt": "2026-04-30"
+}

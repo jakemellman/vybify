@@ -1,0 +1,14 @@
+{
+  "name": "Browser Use",
+  "tagline": "Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with web ",
+  "url": "https://skills.sh/browser-use/browser-use/browser-use",
+  "github": "browser-use/browser-use",
+  "author": "browser-use",
+  "tags": [
+    "claude-code",
+    "browser-use"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add browser-use/browser-use --skill browser-use",
+  "addedAt": "2026-04-30"
+}

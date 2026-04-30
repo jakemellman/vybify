@@ -1,0 +1,15 @@
+{
+  "name": "Use My Browser",
+  "tagline": "Use when work depends on the user's live browser session or visible rendered state rather than static fetches, especially for browser debugging contexts or DevT",
+  "url": "https://skills.sh/xixu-me/skills/use-my-browser",
+  "github": "xixu-me/skills",
+  "author": "xixu-me",
+  "tags": [
+    "claude-code",
+    "xixu-me",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add xixu-me/skills --skill use-my-browser",
+  "addedAt": "2026-04-30"
+}

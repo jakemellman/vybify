@@ -1,0 +1,14 @@
+{
+  "name": "Firebase Data Connect",
+  "tagline": "Skill firebase-data-connect from firebase/agent-skills.",
+  "url": "https://skills.sh/firebase/agent-skills/firebase-data-connect",
+  "github": "firebase/agent-skills",
+  "author": "firebase",
+  "tags": [
+    "claude-code",
+    "firebase"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add firebase/agent-skills --skill firebase-data-connect",
+  "addedAt": "2026-04-30"
+}

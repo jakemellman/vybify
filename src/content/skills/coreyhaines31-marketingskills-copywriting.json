@@ -1,0 +1,17 @@
+{
+  "name": "Copywriting",
+  "tagline": "When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/copywriting",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill copywriting",
+  "addedAt": "2026-04-30"
+}

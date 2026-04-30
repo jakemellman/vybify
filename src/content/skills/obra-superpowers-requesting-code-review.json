@@ -1,0 +1,14 @@
+{
+  "name": "Requesting Code Review",
+  "tagline": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+  "url": "https://skills.sh/obra/superpowers/requesting-code-review",
+  "github": "obra/superpowers",
+  "author": "obra",
+  "tags": [
+    "claude-code",
+    "obra"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add obra/superpowers --skill requesting-code-review",
+  "addedAt": "2026-04-30"
+}

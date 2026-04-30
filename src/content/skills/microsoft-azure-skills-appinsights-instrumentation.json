@@ -1,0 +1,15 @@
+{
+  "name": "Appinsights Instrumentation",
+  "tagline": "Guidance for instrumenting webapps with Azure Application Insights. Provides telemetry patterns, SDK setup, and configuration references. WHEN: how to instrumen",
+  "url": "https://skills.sh/microsoft/azure-skills/appinsights-instrumentation",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill appinsights-instrumentation",
+  "addedAt": "2026-04-30"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Email Sequence",
+  "tagline": "When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions \"e",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/email-sequence",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill email-sequence",
+  "addedAt": "2026-04-30"
+}

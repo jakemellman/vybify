@@ -1,0 +1,15 @@
+{
+  "name": "Airunway Aks Setup",
+  "tagline": "Set up AI Runway on AKS — from bare cluster to running model. Covers cluster verification, controller install, GPU assessment, provider setup, and first deploym",
+  "url": "https://skills.sh/microsoft/azure-skills/airunway-aks-setup",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill airunway-aks-setup",
+  "addedAt": "2026-04-30"
+}

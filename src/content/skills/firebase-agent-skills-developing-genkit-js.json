@@ -1,0 +1,14 @@
+{
+  "name": "Developing Genkit Js",
+  "tagline": "Develop AI-powered applications using Genkit in Node.js/TypeScript. Use when the user asks about Genkit, AI agents, flows, or tools in JavaScript/TypeScript, or",
+  "url": "https://skills.sh/firebase/agent-skills/developing-genkit-js",
+  "github": "firebase/agent-skills",
+  "author": "firebase",
+  "tags": [
+    "claude-code",
+    "firebase"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add firebase/agent-skills --skill developing-genkit-js",
+  "addedAt": "2026-04-30"
+}

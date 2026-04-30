@@ -1,0 +1,14 @@
+{
+  "name": "Systematic Debugging",
+  "tagline": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+  "url": "https://skills.sh/obra/superpowers/systematic-debugging",
+  "github": "obra/superpowers",
+  "author": "obra",
+  "tags": [
+    "claude-code",
+    "obra"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add obra/superpowers --skill systematic-debugging",
+  "addedAt": "2026-04-30"
+}

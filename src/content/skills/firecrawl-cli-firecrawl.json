@@ -1,0 +1,14 @@
+{
+  "name": "Firecrawl",
+  "tagline": "Skill firecrawl from firecrawl/cli.",
+  "url": "https://skills.sh/firecrawl/cli/firecrawl",
+  "github": "firecrawl/cli",
+  "author": "firecrawl",
+  "tags": [
+    "claude-code",
+    "firecrawl"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add firecrawl/cli --skill firecrawl",
+  "addedAt": "2026-04-30"
+}

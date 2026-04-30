@@ -1,0 +1,14 @@
+{
+  "name": "Design Taste Frontend",
+  "tagline": "Skill design-taste-frontend from leonxlnx/taste-skill.",
+  "url": "https://skills.sh/leonxlnx/taste-skill/design-taste-frontend",
+  "github": "leonxlnx/taste-skill",
+  "author": "leonxlnx",
+  "tags": [
+    "claude-code",
+    "leonxlnx"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add leonxlnx/taste-skill --skill design-taste-frontend",
+  "addedAt": "2026-04-30"
+}

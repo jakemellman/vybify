@@ -1,0 +1,15 @@
+{
+  "name": "Microsoft Foundry",
+  "tagline": "Deploy, evaluate, and manage Foundry agents end-to-end: Docker build, ACR push, hosted/prompt agent create, container start, batch eval, prompt optimization, pr",
+  "url": "https://skills.sh/microsoft/azure-skills/microsoft-foundry",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill microsoft-foundry",
+  "addedAt": "2026-04-30"
+}

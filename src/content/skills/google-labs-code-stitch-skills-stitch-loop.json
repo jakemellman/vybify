@@ -1,0 +1,14 @@
+{
+  "name": "Stitch Loop",
+  "tagline": "Teaches agents to iteratively build websites using Stitch with an autonomous baton-passing loop pattern",
+  "url": "https://skills.sh/google-labs-code/stitch-skills/stitch-loop",
+  "github": "google-labs-code/stitch-skills",
+  "author": "google-labs-code",
+  "tags": [
+    "claude-code",
+    "google-labs-code"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add google-labs-code/stitch-skills --skill stitch-loop",
+  "addedAt": "2026-04-30"
+}

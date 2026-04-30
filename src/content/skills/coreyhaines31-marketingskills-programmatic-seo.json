@@ -1,0 +1,17 @@
+{
+  "name": "Programmatic Seo",
+  "tagline": "When the user wants to create SEO-driven pages at scale using templates and data. Also use when the user mentions \"programmatic SEO,\" \"template pages,\" \"pages a",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/programmatic-seo",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill programmatic-seo",
+  "addedAt": "2026-04-30"
+}

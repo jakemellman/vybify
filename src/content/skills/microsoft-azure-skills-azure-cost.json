@@ -1,0 +1,15 @@
+{
+  "name": "Azure Cost",
+  "tagline": "Unified Azure cost management: query historical costs, forecast future spending, and optimize to reduce waste. WHEN: \\\"Azure costs\\\", \\\"Azure spending\\\", \\\"Azur",
+  "url": "https://skills.sh/microsoft/azure-skills/azure-cost",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill azure-cost",
+  "addedAt": "2026-04-30"
+}

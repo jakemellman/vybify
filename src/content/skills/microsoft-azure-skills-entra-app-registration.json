@@ -1,0 +1,15 @@
+{
+  "name": "Entra App Registration",
+  "tagline": "Guides Microsoft Entra ID app registration, OAuth 2.0 authentication, and MSAL integration. USE FOR: create app registration, register Azure AD app, configure O",
+  "url": "https://skills.sh/microsoft/azure-skills/entra-app-registration",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill entra-app-registration",
+  "addedAt": "2026-04-30"
+}

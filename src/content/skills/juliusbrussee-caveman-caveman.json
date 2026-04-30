@@ -1,0 +1,18 @@
+{
+  "name": "Caveman",
+  "tagline": "Ultra-compressed communication mode. Cuts token usage ~75% by speaking like caveman while keeping full technical accuracy. Supports intensity levels: lite, full",
+  "url": "https://skills.sh/juliusbrussee/caveman/caveman",
+  "github": "juliusbrussee/caveman",
+  "author": "juliusbrussee",
+  "tags": [
+    "claude-code",
+    "juliusbrussee",
+    "ai",
+    "anthropic",
+    "caveman",
+    "claude"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add juliusbrussee/caveman --skill caveman",
+  "addedAt": "2026-04-30"
+}

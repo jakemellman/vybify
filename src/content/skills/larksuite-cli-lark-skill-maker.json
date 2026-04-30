@@ -1,0 +1,14 @@
+{
+  "name": "Lark Skill Maker",
+  "tagline": "创建 lark-cli 的自定义 Skill。当用户需要把飞书 API 操作封装成可复用的 Skill（包装原子 API 或编排多步流程）时使用。",
+  "url": "https://skills.sh/larksuite/cli/lark-skill-maker",
+  "github": "larksuite/cli",
+  "author": "larksuite",
+  "tags": [
+    "claude-code",
+    "larksuite"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add larksuite/cli --skill lark-skill-maker",
+  "addedAt": "2026-04-30"
+}

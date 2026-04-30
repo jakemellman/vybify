@@ -1,0 +1,14 @@
+{
+  "name": "Lark Workflow Standup Report",
+  "tagline": "日程待办摘要：编排 calendar +agenda 和 task +get-my-tasks，生成指定日期的日程与未完成任务摘要。适用于了解今天/明天/本周的安排。",
+  "url": "https://skills.sh/larksuite/cli/lark-workflow-standup-report",
+  "github": "larksuite/cli",
+  "author": "larksuite",
+  "tags": [
+    "claude-code",
+    "larksuite"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add larksuite/cli --skill lark-workflow-standup-report",
+  "addedAt": "2026-04-30"
+}

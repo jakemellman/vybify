@@ -1,0 +1,17 @@
+{
+  "name": "Schema Markup",
+  "tagline": "When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions \"schema markup,\" \"structured data,",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/schema-markup",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill schema-markup",
+  "addedAt": "2026-04-30"
+}
