@@ -1,14 +1,82 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import CategoryRow from '../components/CategoryRow.astro';
 import SearchableGrid from '../components/SearchableGrid.astro';
+import { withStars } from '../lib/github';
 
-const projects = await getCollection('projects');
-const skills = await getCollection('skills');
+const kindBadge: Record<string, string | undefined> = {
+  'mcp-server': 'MCP',
+  'claude-code-skill': 'Skill',
+  'cursor-rule': 'Cursor',
+  'custom-gpt': 'GPT',
+  other: undefined,
+};
+
+const projectsRaw = await withStars(await getCollection('projects'));
+const skillsRaw = await withStars(await getCollection('skills'));
+
+const projects = projectsRaw.map((e) => ({
+  _type: 'project' as const,
+  _id: `p-${e.id}`,
+  data: e.data,
+  stars: e.stars,
+  delta7d: e.delta7d,
+  badge: undefined as string | undefined,
+}));
+
+const skills = skillsRaw.map((e) => ({
+  _type: 'skill' as const,
+  _id: `s-${e.id}`,
+  data: e.data,
+  stars: e.stars,
+  delta7d: e.delta7d,
+  badge: kindBadge[e.data.kind],
+}));
+
+const all = [...projects, ...skills];
+
+const byStars = (a: { stars: number | null }, b: { stars: number | null }) =>
+  (b.stars ?? -1) - (a.stars ?? -1);
+
+const hasAnyTag = (tags: string[], wanted: string[]) => {
+  const set = new Set(tags.map((t) => t.toLowerCase()));
+  return wanted.some((w) => set.has(w));
+};
+
+// Editors & IDEs — visible IDE / editor surface
+const editors = projects
+  .filter((e) => hasAnyTag(e.data.tags ?? [], ['editor', 'ide', 'vscode', 'jetbrains']))
+  .sort(byStars)
+  .slice(0, 12);
+
+// Coding agents — autonomous tools that drive development
+const agents = projects
+  .filter((e) => hasAnyTag(e.data.tags ?? [], ['agent', 'autonomous']))
+  .sort(byStars)
+  .slice(0, 14);
+
+// Top installable skills (excluding curated lists/refs that aren't really installable)
+const topSkills = skills
+  .filter((e) => e.data.install)
+  .sort(byStars)
+  .slice(0, 16);
+
+// MCP servers
+const mcps = skills
+  .filter((e) => e.data.kind === 'mcp-server')
+  .sort(byStars)
+  .slice(0, 12);
+
+// Frameworks & SDKs
+const frameworks = projects
+  .filter((e) => hasAnyTag(e.data.tags ?? [], ['framework', 'library', 'sdk']))
+  .sort(byStars)
+  .slice(0, 12);
 ---
 
 <Layout>
-  <section class="mb-6">
+  <section class="mb-8">
     <h1 class="text-2xl sm:text-3xl font-semibold text-[var(--color-fg)] mb-1">
       Discover what's been vibe-coded.
     </h1>
@@ -18,5 +86,59 @@ const skills = await getCollection('skills');
     </p>
   </section>
 
-  <SearchableGrid type="all" />
+  {editors.length > 0 && (
+    <CategoryRow
+      title="Editors & IDEs"
+      subtitle="The surfaces you write code in"
+      viewAllHref="/tag/editor"
+      entries={editors}
+      layout="single"
+    />
+  )}
+
+  {agents.length > 0 && (
+    <CategoryRow
+      title="Coding agents"
+      subtitle="Autonomous tools that drive your dev work"
+      viewAllHref="/tag/agent"
+      entries={agents}
+      layout="single"
+    />
+  )}
+
+  {topSkills.length > 0 && (
+    <CategoryRow
+      title="Top skills"
+      subtitle="Most-starred installable skills, ranked"
+      viewAllHref="/skills"
+      entries={topSkills}
+      layout="double"
+    />
+  )}
+
+  {mcps.length > 0 && (
+    <CategoryRow
+      title="MCP servers"
+      subtitle="Plug new capabilities into Claude Code, Cursor, and friends"
+      viewAllHref="/tag/mcp"
+      entries={mcps}
+      layout="single"
+    />
+  )}
+
+  {frameworks.length > 0 && (
+    <CategoryRow
+      title="Frameworks & SDKs"
+      subtitle="The toolkits people build agents and apps with"
+      viewAllHref="/tag/framework"
+      entries={frameworks}
+      layout="single"
+    />
+  )}
+
+  <section class="mt-16 pt-8 border-t border-[var(--color-border)]">
+    <h2 class="text-xl font-semibold mb-1">Browse everything</h2>
+    <p class="text-sm text-[var(--color-fg-muted)] mb-4">Search and filter the full directory.</p>
+    <SearchableGrid type="all" />
+  </section>
 </Layout>
