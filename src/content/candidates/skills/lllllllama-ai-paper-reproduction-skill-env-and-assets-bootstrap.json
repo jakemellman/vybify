@@ -1,0 +1,14 @@
+{
+  "name": "Env And Assets Bootstrap",
+  "tagline": "Skill env-and-assets-bootstrap from lllllllama/ai-paper-reproduction-skill.",
+  "url": "https://skills.sh/lllllllama/ai-paper-reproduction-skill/env-and-assets-bootstrap",
+  "github": "lllllllama/ai-paper-reproduction-skill",
+  "author": "lllllllama",
+  "tags": [
+    "claude-code",
+    "lllllllama"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add lllllllama/ai-paper-reproduction-skill --skill env-and-assets-bootstrap",
+  "addedAt": "2026-04-30"
+}

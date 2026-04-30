@@ -1,0 +1,14 @@
+{
+  "name": "Simple",
+  "tagline": "Simplified Claude Code skills for faster work and decision making",
+  "url": "https://skills.sh/roin-orca/skills/simple",
+  "github": "roin-orca/skills",
+  "author": "roin-orca",
+  "tags": [
+    "claude-code",
+    "roin-orca"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add roin-orca/skills --skill simple",
+  "addedAt": "2026-04-30"
+}

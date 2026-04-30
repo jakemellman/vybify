@@ -1,0 +1,14 @@
+{
+  "name": "Minimal Run And Audit",
+  "tagline": "Skill minimal-run-and-audit from lllllllama/ai-paper-reproduction-skill.",
+  "url": "https://skills.sh/lllllllama/ai-paper-reproduction-skill/minimal-run-and-audit",
+  "github": "lllllllama/ai-paper-reproduction-skill",
+  "author": "lllllllama",
+  "tags": [
+    "claude-code",
+    "lllllllama"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add lllllllama/ai-paper-reproduction-skill --skill minimal-run-and-audit",
+  "addedAt": "2026-04-30"
+}

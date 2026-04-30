@@ -1,0 +1,14 @@
+{
+  "name": "Next Best Practices",
+  "tagline": "Skill next-best-practices from vercel-labs/next-skills.",
+  "url": "https://skills.sh/vercel-labs/next-skills/next-best-practices",
+  "github": "vercel-labs/next-skills",
+  "author": "vercel-labs",
+  "tags": [
+    "claude-code",
+    "vercel-labs"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add vercel-labs/next-skills --skill next-best-practices",
+  "addedAt": "2026-04-30"
+}

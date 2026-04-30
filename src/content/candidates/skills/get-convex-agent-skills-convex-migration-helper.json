@@ -1,0 +1,14 @@
+{
+  "name": "Convex Migration Helper",
+  "tagline": "Convex Skills for Agents",
+  "url": "https://skills.sh/get-convex/agent-skills/convex-migration-helper",
+  "github": "get-convex/agent-skills",
+  "author": "get-convex",
+  "tags": [
+    "claude-code",
+    "get-convex"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add get-convex/agent-skills --skill convex-migration-helper",
+  "addedAt": "2026-04-30"
+}

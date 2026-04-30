@@ -1,0 +1,14 @@
+{
+  "name": "Firebase App Hosting Basics",
+  "tagline": "Agent Skills for Firebase",
+  "url": "https://skills.sh/firebase/agent-skills/firebase-app-hosting-basics",
+  "github": "firebase/agent-skills",
+  "author": "firebase",
+  "tags": [
+    "claude-code",
+    "firebase"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add firebase/agent-skills --skill firebase-app-hosting-basics",
+  "addedAt": "2026-04-30"
+}

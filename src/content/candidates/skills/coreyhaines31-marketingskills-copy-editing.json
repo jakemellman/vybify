@@ -1,0 +1,17 @@
+{
+  "name": "Copy Editing",
+  "tagline": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
+  "url": "https://skills.sh/coreyhaines31/marketingskills/copy-editing",
+  "github": "coreyhaines31/marketingskills",
+  "author": "coreyhaines31",
+  "tags": [
+    "claude-code",
+    "coreyhaines31",
+    "claude",
+    "codex",
+    "marketing"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add coreyhaines31/marketingskills --skill copy-editing",
+  "addedAt": "2026-04-30"
+}

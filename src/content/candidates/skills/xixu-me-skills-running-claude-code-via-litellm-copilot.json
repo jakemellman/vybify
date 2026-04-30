@@ -1,0 +1,15 @@
+{
+  "name": "Running Claude Code Via Litellm Copilot",
+  "tagline": "Agent Skills maintained by me for practical engineering work",
+  "url": "https://skills.sh/xixu-me/skills/running-claude-code-via-litellm-copilot",
+  "github": "xixu-me/skills",
+  "author": "xixu-me",
+  "tags": [
+    "claude-code",
+    "xixu-me",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add xixu-me/skills --skill running-claude-code-via-litellm-copilot",
+  "addedAt": "2026-04-30"
+}

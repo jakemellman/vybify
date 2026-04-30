@@ -1,0 +1,14 @@
+{
+  "name": "Stitch Loop",
+  "tagline": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents s",
+  "url": "https://skills.sh/google-labs-code/stitch-skills/stitch-loop",
+  "github": "google-labs-code/stitch-skills",
+  "author": "google-labs-code",
+  "tags": [
+    "claude-code",
+    "google-labs-code"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add google-labs-code/stitch-skills --skill stitch-loop",
+  "addedAt": "2026-04-30"
+}

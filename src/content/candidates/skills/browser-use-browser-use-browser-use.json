@@ -1,0 +1,18 @@
+{
+  "name": "Browser Use",
+  "tagline": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
+  "url": "https://skills.sh/browser-use/browser-use/browser-use",
+  "github": "browser-use/browser-use",
+  "author": "browser-use",
+  "tags": [
+    "claude-code",
+    "browser-use",
+    "ai-agents",
+    "ai-tools",
+    "browser-automation",
+    "llm"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add browser-use/browser-use --skill browser-use",
+  "addedAt": "2026-04-30"
+}

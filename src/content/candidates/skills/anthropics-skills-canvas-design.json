@@ -1,0 +1,15 @@
+{
+  "name": "Canvas Design",
+  "tagline": "Public repository for Agent Skills",
+  "url": "https://skills.sh/anthropics/skills/canvas-design",
+  "github": "anthropics/skills",
+  "author": "anthropics",
+  "tags": [
+    "claude-code",
+    "anthropics",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add anthropics/skills --skill canvas-design",
+  "addedAt": "2026-04-30"
+}

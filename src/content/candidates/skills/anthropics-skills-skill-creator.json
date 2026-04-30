@@ -1,0 +1,15 @@
+{
+  "name": "Skill Creator",
+  "tagline": "Public repository for Agent Skills",
+  "url": "https://skills.sh/anthropics/skills/skill-creator",
+  "github": "anthropics/skills",
+  "author": "anthropics",
+  "tags": [
+    "claude-code",
+    "anthropics",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add anthropics/skills --skill skill-creator",
+  "addedAt": "2026-04-30"
+}

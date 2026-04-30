@@ -1,0 +1,18 @@
+{
+  "name": "Typescript Advanced Types",
+  "tagline": "Intelligent automation and multi-agent orchestration for Claude Code",
+  "url": "https://skills.sh/wshobson/agents/typescript-advanced-types",
+  "github": "wshobson/agents",
+  "author": "wshobson",
+  "tags": [
+    "claude-code",
+    "wshobson",
+    "agents",
+    "anthropic",
+    "anthropic-claude",
+    "automation"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add wshobson/agents --skill typescript-advanced-types",
+  "addedAt": "2026-04-30"
+}

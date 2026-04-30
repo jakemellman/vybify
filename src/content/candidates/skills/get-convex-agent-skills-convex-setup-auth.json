@@ -1,0 +1,14 @@
+{
+  "name": "Convex Setup Auth",
+  "tagline": "Convex Skills for Agents",
+  "url": "https://skills.sh/get-convex/agent-skills/convex-setup-auth",
+  "github": "get-convex/agent-skills",
+  "author": "get-convex",
+  "tags": [
+    "claude-code",
+    "get-convex"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add get-convex/agent-skills --skill convex-setup-auth",
+  "addedAt": "2026-04-30"
+}

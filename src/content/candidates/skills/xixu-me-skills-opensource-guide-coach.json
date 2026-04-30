@@ -1,0 +1,15 @@
+{
+  "name": "Opensource Guide Coach",
+  "tagline": "Agent Skills maintained by me for practical engineering work",
+  "url": "https://skills.sh/xixu-me/skills/opensource-guide-coach",
+  "github": "xixu-me/skills",
+  "author": "xixu-me",
+  "tags": [
+    "claude-code",
+    "xixu-me",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add xixu-me/skills --skill opensource-guide-coach",
+  "addedAt": "2026-04-30"
+}

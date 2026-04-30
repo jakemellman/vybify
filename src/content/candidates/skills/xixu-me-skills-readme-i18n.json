@@ -1,0 +1,15 @@
+{
+  "name": "Readme I18n",
+  "tagline": "Agent Skills maintained by me for practical engineering work",
+  "url": "https://skills.sh/xixu-me/skills/readme-i18n",
+  "github": "xixu-me/skills",
+  "author": "xixu-me",
+  "tags": [
+    "claude-code",
+    "xixu-me",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add xixu-me/skills --skill readme-i18n",
+  "addedAt": "2026-04-30"
+}

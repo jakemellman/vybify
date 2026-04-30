@@ -1,0 +1,44 @@
+name: Ingest skills.sh top entries
+
+on:
+  schedule:
+    # 09:00 UTC every Sunday
+    - cron: '0 9 * * 0'
+  workflow_dispatch:
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run skills.sh ingest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/ingest-skills-sh.mjs
+
+      - name: Open PR with candidates
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: 'Weekly skills.sh ingest'
+          body: |
+            Top 200 skills from skills.sh sitemap, deduped against existing entries.
+
+            Each candidate is a JSON draft in `src/content/candidates/skills/`.
+            To accept one:
+            1. Edit the tagline if needed (esp. for sibling skills sharing a repo description)
+            2. Move to `src/content/skills/`
+            3. Merge
+
+            To reject: delete the file.
+          branch: ingest/skills-sh-weekly
+          delete-branch: true
+          commit-message: 'ingest: weekly skills.sh candidates'
+          add-paths: src/content/candidates/skills/**

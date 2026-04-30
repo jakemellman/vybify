@@ -1,0 +1,15 @@
+{
+  "name": "Entra App Registration",
+  "tagline": "Official agent plugin providing skills and MCP server configurations for Azure scenarios.",
+  "url": "https://skills.sh/microsoft/azure-skills/entra-app-registration",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill entra-app-registration",
+  "addedAt": "2026-04-30"
+}

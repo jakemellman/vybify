@@ -1,0 +1,14 @@
+{
+  "name": "Agent Browser",
+  "tagline": "Browser automation CLI for AI agents",
+  "url": "https://skills.sh/vercel-labs/agent-browser/agent-browser",
+  "github": "vercel-labs/agent-browser",
+  "author": "vercel-labs",
+  "tags": [
+    "claude-code",
+    "vercel-labs"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add vercel-labs/agent-browser --skill agent-browser",
+  "addedAt": "2026-04-30"
+}

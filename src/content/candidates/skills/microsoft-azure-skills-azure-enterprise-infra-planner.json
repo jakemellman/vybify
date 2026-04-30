@@ -1,0 +1,15 @@
+{
+  "name": "Azure Enterprise Infra Planner",
+  "tagline": "Official agent plugin providing skills and MCP server configurations for Azure scenarios.",
+  "url": "https://skills.sh/microsoft/azure-skills/azure-enterprise-infra-planner",
+  "github": "microsoft/azure-skills",
+  "author": "microsoft",
+  "tags": [
+    "claude-code",
+    "microsoft",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add microsoft/azure-skills --skill azure-enterprise-infra-planner",
+  "addedAt": "2026-04-30"
+}

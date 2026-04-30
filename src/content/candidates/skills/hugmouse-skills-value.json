@@ -1,0 +1,14 @@
+{
+  "name": "Value",
+  "tagline": "This repo contains absolutely nothing of value.",
+  "url": "https://skills.sh/hugmouse/skills/value",
+  "github": "hugmouse/skills",
+  "author": "hugmouse",
+  "tags": [
+    "claude-code",
+    "hugmouse"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add hugmouse/skills --skill value",
+  "addedAt": "2026-04-30"
+}

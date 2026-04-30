@@ -1,0 +1,15 @@
+{
+  "name": "Mcp Builder",
+  "tagline": "Public repository for Agent Skills",
+  "url": "https://skills.sh/anthropics/skills/mcp-builder",
+  "github": "anthropics/skills",
+  "author": "anthropics",
+  "tags": [
+    "claude-code",
+    "anthropics",
+    "agent-skills"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add anthropics/skills --skill mcp-builder",
+  "addedAt": "2026-04-30"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Firebase Firestore Enterprise Native Mode",
+  "tagline": "Agent Skills for Firebase",
+  "url": "https://skills.sh/firebase/agent-skills/firebase-firestore-enterprise-native-mode",
+  "github": "firebase/agent-skills",
+  "author": "firebase",
+  "tags": [
+    "claude-code",
+    "firebase"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add firebase/agent-skills --skill firebase-firestore-enterprise-native-mode",
+  "addedAt": "2026-04-30"
+}

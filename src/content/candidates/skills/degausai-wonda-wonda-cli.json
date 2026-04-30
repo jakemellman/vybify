@@ -1,0 +1,18 @@
+{
+  "name": "Wonda Cli",
+  "tagline": "Wonda CLI — AI-powered content creation from your terminal",
+  "url": "https://skills.sh/degausai/wonda/wonda-cli",
+  "github": "degausai/wonda",
+  "author": "degausai",
+  "tags": [
+    "claude-code",
+    "degausai",
+    "agent",
+    "agent-skills",
+    "ai",
+    "automation"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add degausai/wonda --skill wonda-cli",
+  "addedAt": "2026-04-30"
+}

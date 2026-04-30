@@ -1,0 +1,14 @@
+{
+  "name": "Using Git Worktrees",
+  "tagline": "An agentic skills framework & software development methodology that works.",
+  "url": "https://skills.sh/obra/superpowers/using-git-worktrees",
+  "github": "obra/superpowers",
+  "author": "obra",
+  "tags": [
+    "claude-code",
+    "obra"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add obra/superpowers --skill using-git-worktrees",
+  "addedAt": "2026-04-30"
+}

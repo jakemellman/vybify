@@ -1,0 +1,14 @@
+{
+  "name": "React%3Acomponents",
+  "tagline": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents s",
+  "url": "https://skills.sh/google-labs-code/stitch-skills/react%3Acomponents",
+  "github": "google-labs-code/stitch-skills",
+  "author": "google-labs-code",
+  "tags": [
+    "claude-code",
+    "google-labs-code"
+  ],
+  "kind": "claude-code-skill",
+  "install": "npx skills add google-labs-code/stitch-skills --skill react%3Acomponents",
+  "addedAt": "2026-04-30"
+}
