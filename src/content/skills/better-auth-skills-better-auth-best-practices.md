@@ -1,0 +1,15 @@
+---
+name: Better Auth Best Practices
+tagline: "Skill better-auth-best-practices from better-auth/skills."
+url: "https://skills.sh/better-auth/skills/better-auth-best-practices"
+github: "better-auth/skills"
+author: "better-auth"
+tags:
+  - "claude-code"
+  - "better-auth"
+kind: "claude-code-skill"
+install: "npx skills add better-auth/skills --skill better-auth-best-practices"
+addedAt: "2026-04-30"
+---
+
+

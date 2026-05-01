@@ -1,0 +1,19 @@
+---
+name: Ui Ux Pro Max
+tagline: An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms
+url: "https://skills.sh/nextlevelbuilder/ui-ux-pro-max-skill/ui-ux-pro-max"
+github: "nextlevelbuilder/ui-ux-pro-max-skill"
+author: nextlevelbuilder
+tags:
+  - "claude-code"
+  - nextlevelbuilder
+  - "ai-skills"
+  - antigravity
+  - claude
+  - codex
+kind: "cursor-rule"
+install: "npx skills add nextlevelbuilder/ui-ux-pro-max-skill --skill ui-ux-pro-max"
+addedAt: "2026-04-30"
+---
+
+

@@ -1,0 +1,17 @@
+---
+name: Anthropic Skills
+tagline: Official skill examples and reference implementations from Anthropic.
+url: "https://github.com/anthropics/skills"
+github: anthropics/skills
+author: Anthropic
+tags:
+  - "claude-code"
+  - official
+  - reference
+kind: "claude-code-skill"
+install: npx skills add anthropics/skills
+featured: true
+addedAt: "2026-04-28"
+---
+
+

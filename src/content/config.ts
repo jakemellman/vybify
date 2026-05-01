@@ -20,7 +20,7 @@ const projects = defineCollection({
 });
 
 const skills = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/skills' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/skills' }),
   schema: baseEntry.extend({
     kind: z.enum(['claude-code-skill', 'mcp-server', 'cursor-rule', 'custom-gpt', 'other']),
     install: z.string().optional(),

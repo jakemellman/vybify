@@ -1,0 +1,16 @@
+---
+name: Playwright MCP
+tagline: "Give your agent a real browser — navigate, click, screenshot, and scrape."
+url: "https://github.com/microsoft/playwright-mcp"
+github: "microsoft/playwright-mcp"
+author: Microsoft
+tags:
+  - mcp
+  - browser
+  - automation
+kind: "mcp-server"
+install: "claude mcp add playwright npx @playwright/mcp@latest"
+addedAt: "2026-04-28"
+---
+
+

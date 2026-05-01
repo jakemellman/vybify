@@ -1,0 +1,17 @@
+---
+name: Context7
+tagline: "Up-to-date code documentation for any library, fed straight into your LLM via MCP."
+url: "https://context7.com"
+github: upstash/context7
+author: Upstash
+tags:
+  - mcp
+  - docs
+  - context
+kind: "mcp-server"
+install: "claude mcp add context7 -- npx -y @upstash/context7-mcp"
+featured: true
+addedAt: "2026-04-28"
+---
+
+

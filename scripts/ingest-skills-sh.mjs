@@ -82,10 +82,10 @@ async function fetchRepo(repo) {
 }
 
 /**
- * Try common SKILL.md locations in a repo and return the parsed frontmatter
- * description if found.
+ * Try common SKILL.md locations in a repo and return both the parsed
+ * frontmatter description and the markdown body (for MDX content).
  */
-async function fetchSkillDescription(owner, repo, skill, branch) {
+async function fetchSkillContent(owner, repo, skill, branch) {
   const candidatePaths = [
     `${skill}/SKILL.md`,
     `skills/${skill}/SKILL.md`,
@@ -100,12 +100,16 @@ async function fetchSkillDescription(owner, repo, skill, branch) {
       if (!res.ok) continue;
       const md = await res.text();
       const fm = parseFrontmatter(md);
-      if (fm?.description) return fm.description.trim();
+      const body = md.replace(/^---\s*\n[\s\S]*?\n---\s*\n+/, '').trim();
+      return {
+        description: fm?.description?.trim() ?? null,
+        body,
+      };
     } catch {
       // try next
     }
   }
-  return null;
+  return { description: null, body: '' };
 }
 
 function parseFrontmatter(md) {
@@ -176,6 +180,43 @@ function humanName(slug) {
   return slug.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function escapeYaml(value) {
+  if (typeof value !== 'string') return JSON.stringify(value);
+  if (/[:#&*!|>'"%@`,{}[\]?\-]/.test(value) || /^\s|\s$/.test(value) || /^(true|false|null|yes|no)$/i.test(value)) {
+    return JSON.stringify(value);
+  }
+  return value;
+}
+
+function buildFrontmatter(data) {
+  const lines = [];
+  for (const [key, value] of Object.entries(data)) {
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        lines.push(`${key}: []`);
+      } else {
+        lines.push(`${key}:`);
+        for (const item of value) lines.push(`  - ${escapeYaml(item)}`);
+      }
+    } else if (typeof value === 'boolean') {
+      lines.push(`${key}: ${value}`);
+    } else {
+      lines.push(`${key}: ${escapeYaml(String(value))}`);
+    }
+  }
+  return lines.join('\n');
+}
+
+function sanitizeMdxBody(body) {
+  if (!body) return body;
+  return body.replace(/<([^>]*)>/g, (match, inner) => {
+    const trimmed = inner.trim();
+    if (!trimmed || /^[\/\!\?]/.test(trimmed)) return match;
+    if (/^[a-zA-Z][a-zA-Z0-9-]*([\s\/>]|$)/.test(trimmed)) return match;
+    return `&lt;${inner}&gt;`;
+  });
+}
+
 async function main() {
   console.log('Fetching sitemap…');
   const allUrls = await fetchSitemap();
@@ -214,7 +255,7 @@ async function main() {
     const ghRepo = await fetchRepo(`${owner}/${repo}`);
     const installsNum = parseInstallsLabel(meta.installsLabel);
 
-    const skillDescription = await fetchSkillDescription(
+    const skillContent = await fetchSkillContent(
       owner,
       repo,
       skill,
@@ -223,7 +264,7 @@ async function main() {
 
     const name = humanName(skill);
     const tagline = (
-      skillDescription ??
+      skillContent.description ??
       ghRepo?.description ??
       `Skill ${skill} from ${owner}/${repo}.`
     )
@@ -242,12 +283,14 @@ async function main() {
       addedAt: new Date().toISOString().slice(0, 10),
     };
 
-    // Stamp skills.sh popularity in tags if it's notably popular
     if (installsNum >= 100000) entry.featured = true;
 
     const fname = slug(`${owner}-${repo}-${skill}`);
-    const file = `src/content/candidates/skills/${fname}.json`;
-    await writeFile(file, JSON.stringify(entry, null, 2) + '\n');
+    const file = `src/content/candidates/skills/${fname}.md`;
+    const fm = buildFrontmatter(entry);
+    const sanitizedBody = sanitizeMdxBody(skillContent.body);
+    const mdxContent = `---\n${fm}\n---\n\n${sanitizedBody || ''}\n`;
+    await writeFile(file, mdxContent);
     added++;
 
     if ((i + 1) % 25 === 0) {

@@ -41,4 +41,4 @@ jobs:
           branch: ingest/skills-sh-weekly
           delete-branch: true
           commit-message: 'ingest: weekly skills.sh candidates'
-          add-paths: src/content/candidates/skills/**
+          add-paths: src/content/candidates/skills/**.mdx

@@ -1,0 +1,17 @@
+---
+name: Superpowers
+tagline: A library of composable Claude Code skills you can mix into any workflow.
+url: "https://github.com/obra/superpowers"
+github: obra/superpowers
+author: obra
+tags:
+  - "claude-code"
+  - workflow
+  - library
+kind: "claude-code-skill"
+install: npx skills add obra/superpowers
+featured: true
+addedAt: "2026-04-28"
+---
+
+

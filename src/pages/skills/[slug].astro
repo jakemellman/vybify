@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Card from '../../components/Card.astro';
 import CopyableCommand from '../../components/CopyableCommand.astro';
@@ -21,6 +21,8 @@ export async function getStaticPaths() {
 
 const { entry, siblings, otherType } = Astro.props;
 const { data, stars, delta7d } = entry;
+const hasBody = !!entry.body?.trim();
+const { Content } = hasBody ? await render(entry) : { Content: null };
 
 const tagSet = new Set(data.tags.map((t: string) => t.toLowerCase()));
 const related = [...siblings, ...otherType]
@@ -140,6 +142,17 @@ const kindLabel: Record<string, string> = {
       ))}
     </div>
   </article>
+
+  {hasBody && Content && (
+    <section class="bg-[var(--color-card)] border border-[var(--color-border)] rounded-xl p-6 sm:p-8 mb-8">
+      <h2 class="text-base font-semibold text-[var(--color-fg-muted)] uppercase tracking-wider mb-4">
+        How to use this skill
+      </h2>
+      <div class="prose">
+        <Content />
+      </div>
+    </section>
+  )}
 
   {related.length > 0 && (
     <section>
