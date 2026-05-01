@@ -13,7 +13,7 @@ const baseEntry = z.object({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/*.json', base: './src/content/projects' }),
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
   schema: baseEntry.extend({
     builtWith: z.array(z.string()).default([]),
   }),
