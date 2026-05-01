@@ -14,3 +14,4 @@ addedAt: "2026-04-28"
 ---
 
 
+packages/ai/README.md

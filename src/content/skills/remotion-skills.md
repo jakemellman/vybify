@@ -15,3 +15,8 @@ addedAt: "2026-04-29"
 ---
 
 
+# @remotion/skills
+
+## Usage
+
+This is an internal package and has no documentation.
