@@ -2,60 +2,61 @@
 import Layout from '../layouts/Layout.astro';
 
 const user = Astro.locals.user;
-if (!user) {
-  return Astro.redirect('/login?redirect=/submit');
-}
 
 let success = false;
 let formError: string | null = null;
 
 if (Astro.request.method === 'POST') {
-  const form = await Astro.request.formData();
-  const type = String(form.get('type') ?? 'project');
-  const name = String(form.get('name') ?? '').trim();
-  const tagline = String(form.get('tagline') ?? '').trim();
-  const url = String(form.get('url') ?? '').trim();
-  const github = String(form.get('github') ?? '').trim() || null;
-  const tagsRaw = String(form.get('tags') ?? '').trim();
-  const tags = tagsRaw ? tagsRaw.split(',').map((t: string) => t.trim()).filter(Boolean) : [];
-  const body = String(form.get('body') ?? '').trim() || null;
-
-  // project-specific
-  const builtWithRaw = String(form.get('built_with') ?? '').trim();
-  const builtWith = builtWithRaw ? builtWithRaw.split(',').map((t: string) => t.trim()).filter(Boolean) : [];
-
-  // skill-specific
-  const kind = type === 'skill' ? String(form.get('kind') ?? 'other') : null;
-  const install = type === 'skill' ? (String(form.get('install') ?? '').trim() || null) : null;
-
-  if (!name || !tagline || !url) {
-    formError = 'Name, tagline, and URL are required.';
-  } else if (tagline.length > 160) {
-    formError = 'Tagline must be 160 characters or fewer.';
+  if (!user) {
+    formError = 'You must be signed in to submit.';
   } else {
-    const { error } = await Astro.locals.supabase
-      .from('submissions')
-      .insert({
-        user_id: user.id,
-        type,
-        name,
-        tagline,
-        url,
-        github,
-        tags,
-        body,
-        built_with: builtWith,
-        kind,
-        install,
-      });
+    const form = await Astro.request.formData();
+    const type = String(form.get('type') ?? 'project');
+    const name = String(form.get('name') ?? '').trim();
+    const tagline = String(form.get('tagline') ?? '').trim();
+    const url = String(form.get('url') ?? '').trim();
+    const github = String(form.get('github') ?? '').trim() || null;
+    const tagsRaw = String(form.get('tags') ?? '').trim();
+    const tags = tagsRaw ? tagsRaw.split(',').map((t: string) => t.trim()).filter(Boolean) : [];
+    const body = String(form.get('body') ?? '').trim() || null;
 
-    if (error) {
-      formError = error.message;
+    const builtWithRaw = String(form.get('built_with') ?? '').trim();
+    const builtWith = builtWithRaw ? builtWithRaw.split(',').map((t: string) => t.trim()).filter(Boolean) : [];
+
+    const kind = type === 'skill' ? String(form.get('kind') ?? 'other') : null;
+    const install = type === 'skill' ? (String(form.get('install') ?? '').trim() || null) : null;
+
+    if (!name || !tagline || !url) {
+      formError = 'Name, tagline, and URL are required.';
+    } else if (tagline.length > 160) {
+      formError = 'Tagline must be 160 characters or fewer.';
     } else {
-      success = true;
+      const { error } = await Astro.locals.supabase
+        .from('submissions')
+        .insert({
+          user_id: user.id,
+          type,
+          name,
+          tagline,
+          url,
+          github,
+          tags,
+          body,
+          built_with: builtWith,
+          kind,
+          install,
+        });
+
+      if (error) {
+        formError = error.message;
+      } else {
+        success = true;
+      }
     }
   }
 }
+
+const isLoggedIn = !!user;
 ---
 
 <Layout title="Submit · vybify" description="Submit a project or skill to vybify.">
@@ -83,6 +84,28 @@ if (Astro.request.method === 'POST') {
         <p class="text-[var(--color-fg-muted)] mb-6">
           Paste a GitHub repo URL to auto-fill, then tweak as needed.
         </p>
+
+        {/* Sign-in banner for logged-out users */}
+        {!isLoggedIn && (
+          <div id="auth-banner" class="bg-[var(--color-accent-soft)] border border-[var(--color-accent)] rounded-xl p-4 mb-6 flex items-center justify-between gap-4">
+            <p class="text-sm text-[var(--color-accent)]">
+              Sign in to submit — fill out the form first, we'll keep your work.
+            </p>
+            <button
+              id="popup-signin-btn"
+              type="button"
+              class="shrink-0 flex items-center gap-2 px-4 py-2 rounded-md bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.44c-.28 1.5-1.13 2.77-2.41 3.62v3.01h3.89c2.27-2.09 3.57-5.18 3.57-8.87z"/>
+                <path fill="currentColor" d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.89-3.01c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.76-2.1-6.71-4.94H1.27v3.1C3.25 21.3 7.31 24 12 24z"/>
+                <path fill="currentColor" d="M5.29 14.3c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3v-3.1H1.27C.46 8.21 0 10.05 0 12s.46 3.79 1.27 5.4l4.02-3.1z"/>
+                <path fill="currentColor" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.45-3.45C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.6l4.02 3.1C6.24 6.85 8.88 4.75 12 4.75z"/>
+              </svg>
+              Sign in with Google
+            </button>
+          </div>
+        )}
 
         <!-- GitHub auto-fill bar -->
         <div class="flex gap-2 mb-6">
@@ -182,10 +205,12 @@ if (Astro.request.method === 'POST') {
           </div>
 
           <button
+            id="submit-btn"
             type="submit"
-            class="px-4 py-2.5 rounded-md bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition"
+            class="px-4 py-2.5 rounded-md bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={!isLoggedIn}
           >
-            Submit for review
+            {isLoggedIn ? 'Submit for review' : 'Sign in to submit'}
           </button>
         </form>
       </>
@@ -193,6 +218,8 @@ if (Astro.request.method === 'POST') {
   </section>
 
   <script>
+    import { createSupabaseBrowserClient } from '../lib/supabase';
+
     // Type toggle: show/hide project vs skill fields
     const typeRadios = document.querySelectorAll<HTMLInputElement>('input[name="type"]');
     const projectFields = document.getElementById('project-fields');
@@ -213,6 +240,52 @@ if (Astro.request.method === 'POST') {
       if (taglineCount) taglineCount.textContent = String(taglineInput.value.length);
     });
 
+    // Popup sign-in flow
+    const popupBtn = document.getElementById('popup-signin-btn');
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const authBanner = document.getElementById('auth-banner');
+
+    if (popupBtn) {
+      const supabase = createSupabaseBrowserClient();
+
+      popupBtn.addEventListener('click', () => {
+        const w = 500;
+        const h = 600;
+        const left = window.screenX + (window.outerWidth - w) / 2;
+        const top = window.screenY + (window.outerHeight - h) / 2;
+        window.open(
+          '/login?popup=1',
+          'vybify-signin',
+          `width=${w},height=${h},left=${left},top=${top},popup=yes`,
+        );
+      });
+
+      // Listen for auth state change (fired when popup completes OAuth)
+      supabase.auth.onAuthStateChange((event) => {
+        if (event === 'SIGNED_IN') {
+          // Hide the banner and enable the submit button
+          authBanner?.remove();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit for review';
+          }
+        }
+      });
+
+      // Also listen for postMessage from the popup (belt and suspenders)
+      window.addEventListener('message', (e) => {
+        if (e.origin === window.location.origin && e.data === 'auth-complete') {
+          authBanner?.remove();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit for review';
+          }
+          // Reload to get server-side session for the POST
+          window.location.reload();
+        }
+      });
+    }
+
     // GitHub auto-fill
     const ghInput = document.getElementById('github-url-input') as HTMLInputElement;
     const ghBtn = document.getElementById('github-fetch-btn') as HTMLButtonElement;
@@ -220,9 +293,7 @@ if (Astro.request.method === 'POST') {
 
     function parseGitHubRepo(input: string): string | null {
       const trimmed = input.trim();
-      // owner/repo
       if (/^[\w.-]+\/[\w.-]+$/.test(trimmed)) return trimmed;
-      // full URL
       try {
         const url = new URL(trimmed);
         if (url.hostname === 'github.com' || url.hostname === 'www.github.com') {
@@ -252,7 +323,6 @@ if (Astro.request.method === 'POST') {
         }
         const data = await res.json();
 
-        // Fill form fields
         const nameInput = document.getElementById('name') as HTMLInputElement;
         const taglineInput = document.getElementById('tagline') as HTMLInputElement;
         const urlInput = document.getElementById('url') as HTMLInputElement;
@@ -283,7 +353,6 @@ if (Astro.request.method === 'POST') {
           installInput.value = data.install;
         }
 
-        // Auto-select type and kind based on repo content
         if (data.inferredType) {
           const typeRadio = document.querySelector<HTMLInputElement>(`input[name="type"][value="${data.inferredType}"]`);
           if (typeRadio) {
@@ -303,7 +372,6 @@ if (Astro.request.method === 'POST') {
       }
     });
 
-    // Also trigger on Enter in the GitHub URL input
     ghInput?.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();

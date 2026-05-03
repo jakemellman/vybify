@@ -1,7 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+const isPopup = Astro.url.searchParams.get('popup') === '1';
+
 if (Astro.locals.user) {
+  if (isPopup) {
+    // Already logged in and opened as popup — notify opener and close
+    return new Response(`<script>window.opener?.postMessage('auth-complete','*');window.close();</script>`, {
+      headers: { 'Content-Type': 'text/html' },
+    });
+  }
   return Astro.redirect('/');
 }
 
@@ -80,10 +88,16 @@ if (Astro.request.method === 'POST') {
   <script>
     import { createSupabaseBrowserClient } from '../lib/supabase';
     const supabase = createSupabaseBrowserClient();
+    const params = new URLSearchParams(window.location.search);
+    const isPopup = params.get('popup') === '1';
+    const callbackUrl = isPopup
+      ? `${window.location.origin}/auth/callback?popup=1`
+      : `${window.location.origin}/auth/callback`;
+
     document.getElementById('google-signin')?.addEventListener('click', async () => {
       await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: `${window.location.origin}/auth/callback` },
+        options: { redirectTo: callbackUrl },
       });
     });
   </script>
