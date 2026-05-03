@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import { withStars } from '../lib/github';
 
 const allSkills = await withStars(await getCollection('skills'));
@@ -9,6 +8,7 @@ const starterSkills = allSkills
   .filter((e) => e.data.starter)
   .sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1));
 
+// Passed to copy button in Task 3 — built here so it's available in the template
 const copyPayload = starterSkills
   .map((e) =>
     e.data.install
