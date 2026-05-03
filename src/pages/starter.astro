@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
 import { withStars } from '../lib/github';
 
 const allSkills = await withStars(await getCollection('skills'));
@@ -41,4 +42,27 @@ const copyPayload = starterSkills
       Copy Coding Essentials
     </button>
   </section>
+
+  {starterSkills.length > 0 ? (
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+      {starterSkills.map((entry) => (
+        <Card
+          name={entry.data.name}
+          tagline={entry.data.tagline}
+          href={`/skills/${entry.id}`}
+          url={entry.data.url}
+          github={entry.data.github}
+          author={entry.data.author}
+          tags={entry.data.tags ?? []}
+          stars={entry.stars}
+          delta7d={entry.delta7d}
+          featured={entry.data.featured}
+        />
+      ))}
+    </div>
+  ) : (
+    <p class="text-[var(--color-fg-muted)]">
+      No essentials yet — check back soon.
+    </p>
+  )}
 </Layout>
