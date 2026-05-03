@@ -39,7 +39,7 @@ const copyPayload = starterSkills
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
       </svg>
-      Copy Coding Essentials
+      <span id="copy-essentials-label">Copy Coding Essentials</span>
     </button>
   </section>
 
@@ -65,23 +65,23 @@ const copyPayload = starterSkills
       No essentials yet — check back soon.
     </p>
   )}
-</Layout>
 
-<script>
-  const btn = document.getElementById('copy-essentials-btn') as HTMLButtonElement | null;
-  if (btn) {
-    btn.addEventListener('click', async () => {
-      const payload = btn.dataset.payload ?? '';
-      try {
-        await navigator.clipboard.writeText(payload);
-        const original = btn.innerHTML;
-        btn.textContent = '✓ Copied!';
-        setTimeout(() => {
-          btn.innerHTML = original;
-        }, 1500);
-      } catch {
-        console.error('Clipboard write failed');
-      }
-    });
-  }
-</script>
+  <script>
+    const btn = document.getElementById('copy-essentials-btn') as HTMLButtonElement | null;
+    const label = document.getElementById('copy-essentials-label') as HTMLElement | null;
+    if (btn && label) {
+      btn.addEventListener('click', async () => {
+        const payload = btn.dataset.payload ?? '';
+        try {
+          await navigator.clipboard.writeText(payload);
+          label.textContent = '✓ Copied!';
+          setTimeout(() => {
+            label.textContent = 'Copy Coding Essentials';
+          }, 1500);
+        } catch (err) {
+          console.error('Clipboard write failed', err);
+        }
+      });
+    }
+  </script>
+</Layout>
