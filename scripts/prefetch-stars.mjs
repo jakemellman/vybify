@@ -43,15 +43,31 @@ async function save(path, data) {
   await writeFile(path, JSON.stringify(data, null, 2));
 }
 
+function parseYamlFrontmatter(content) {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return {};
+  const yaml = match[1];
+  // Simple extraction — just need the github field
+  const ghMatch = yaml.match(/^github:\s*['"]?([^\s'"#]+)/m);
+  return ghMatch ? { github: ghMatch[1] } : {};
+}
+
 async function collectUniqueRepos() {
   const dirs = ['src/content/projects', 'src/content/skills'];
   const repos = new Set();
   for (const dir of dirs) {
     if (!existsSync(dir)) continue;
     for (const f of await readdir(dir)) {
-      if (!f.endsWith('.json')) continue;
       try {
-        const d = JSON.parse(await readFile(join(dir, f), 'utf8'));
+        const raw = await readFile(join(dir, f), 'utf8');
+        let d;
+        if (f.endsWith('.json')) {
+          d = JSON.parse(raw);
+        } else if (f.endsWith('.md') || f.endsWith('.mdx')) {
+          d = parseYamlFrontmatter(raw);
+        } else {
+          continue;
+        }
         if (d.github) repos.add(d.github);
       } catch {}
     }
