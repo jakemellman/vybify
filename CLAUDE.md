@@ -105,6 +105,8 @@ Confirm with the user before running:
 - Schema: see `src/content/config.ts`. Required: `name`, `tagline` (max
   160), `url`, `tags[]`, `addedAt` (YYYY-MM-DD). Skills also need `kind`
   and an optional `install` command.
+- Skills have a `starter: boolean` field (default `false`). Jake sets
+  `starter: true` on skills he wants in the Vibe Coding Essentials pack.
 - Markdown body (optional) renders on detail pages as the "How it was
   built" / "How to use this skill" section.
 
@@ -139,10 +141,11 @@ Confirm with the user before running:
 - Per-page meta tags: `og:image`, `twitter:card`
 - Share buttons on detail pages: Copy link · Post (X) · Bluesky · Threads · Reddit
 
-### Phase B — 1-click starter pack — ~1 day, no infra changes
-- Curate "Vibe Coding Essentials" pack (~12 skills hand-picked)
-- `/starter` landing page with explanation, list, "Copy all install commands" button
-- (Stretch) `npx skills add vybify/essentials` single command via meta-repo
+### Phase B — 1-click starter pack ✅
+- `/starter` page at `src/pages/starter.astro` — shows all skills where `starter: true`, sorted by stars
+- "Copy Coding Essentials" button copies newline-separated install commands to clipboard
+- Skills without an `install` field get a commented fallback line in the copy payload
+- **Pending Jake:** mark skills with `starter: true`; add "Essentials" nav link in `Layout.astro`
 
 ### Phase C — Auth + DB foundation (Jake) — unlocks D/E/F
 - Cloudflare D1 (SQLite at the edge)
