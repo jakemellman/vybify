@@ -8,7 +8,7 @@ const _require = createRequire(import.meta.url);
 let _wasmInit: Promise<void> | null = null;
 function ensureWasm() {
   if (!_wasmInit) {
-    const pkgDir = dirname(_require.resolve('@resvg/resvg-wasm/package.json'));
+    const pkgDir = dirname(_require.resolve('@resvg/resvg-wasm'));
     _wasmInit = initWasm(readFileSync(join(pkgDir, 'index_bg.wasm')));
   }
   return _wasmInit;
