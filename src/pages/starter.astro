@@ -66,3 +66,22 @@ const copyPayload = starterSkills
     </p>
   )}
 </Layout>
+
+<script>
+  const btn = document.getElementById('copy-essentials-btn') as HTMLButtonElement | null;
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      const payload = btn.dataset.payload ?? '';
+      try {
+        await navigator.clipboard.writeText(payload);
+        const original = btn.innerHTML;
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => {
+          btn.innerHTML = original;
+        }, 1500);
+      } catch {
+        console.error('Clipboard write failed');
+      }
+    });
+  }
+</script>
