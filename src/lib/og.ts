@@ -1,5 +1,18 @@
 import satori from 'satori';
-import { Resvg } from '@resvg/resvg-js';
+import { Resvg, initWasm } from '@resvg/resvg-wasm';
+import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { dirname, join } from 'node:path';
+
+const _require = createRequire(import.meta.url);
+let _wasmInit: Promise<void> | null = null;
+function ensureWasm() {
+  if (!_wasmInit) {
+    const pkgDir = dirname(_require.resolve('@resvg/resvg-wasm/package.json'));
+    _wasmInit = initWasm(readFileSync(join(pkgDir, 'index_bg.wasm')));
+  }
+  return _wasmInit;
+}
 
 const INTER_400 = 'https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-400-normal.woff';
 const INTER_600 = 'https://cdn.jsdelivr.net/npm/@fontsource/inter@5/files/inter-latin-600-normal.woff';
@@ -23,6 +36,7 @@ export interface OgOptions {
 }
 
 export async function generateOgImage(opts: OgOptions): Promise<Buffer> {
+  await ensureWasm();
   const [regular, semibold] = await Promise.all([
     fetchFont(INTER_400),
     fetchFont(INTER_600),
