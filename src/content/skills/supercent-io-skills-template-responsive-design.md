@@ -1,0 +1,15 @@
+---
+name: Responsive Design
+tagline: "Skill responsive-design from supercent-io/skills-template."
+url: "https://skills.sh/supercent-io/skills-template/responsive-design"
+github: "supercent-io/skills-template"
+author: "supercent-io"
+tags:
+  - "claude-code"
+  - "supercent-io"
+kind: "claude-code-skill"
+install: "npx skills add supercent-io/skills-template --skill responsive-design"
+addedAt: "2026-05-05"
+---
+
+

@@ -7,7 +7,7 @@ import { readFile, readdir, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const TOP_N = 200;
+const TOP_N = 500;
 const DELAY_MS = 75;
 const TOKEN = process.env.GITHUB_TOKEN;
 
@@ -145,16 +145,32 @@ function parseFrontmatter(md) {
   return out;
 }
 
+function parseYamlFrontmatter(content) {
+  const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!match) return {};
+  const yaml = match[1];
+  const urlMatch = yaml.match(/^url:\s*['"]?([^\s'"#]+)/m);
+  const ghMatch = yaml.match(/^github:\s*['"]?([^\s'"#]+)/m);
+  return { url: urlMatch?.[1], github: ghMatch?.[1] };
+}
+
 async function loadExisting() {
-  const dirs = ['src/content/projects', 'src/content/skills'];
+  const dirs = ['src/content/projects', 'src/content/skills', 'src/content/candidates/skills'];
   const seenUrls = new Set();
   const seenGithubs = new Set();
   for (const dir of dirs) {
     if (!existsSync(dir)) continue;
     for (const f of await readdir(dir)) {
-      if (!f.endsWith('.json')) continue;
       try {
-        const d = JSON.parse(await readFile(join(dir, f), 'utf8'));
+        const raw = await readFile(join(dir, f), 'utf8');
+        let d;
+        if (f.endsWith('.json')) {
+          d = JSON.parse(raw);
+        } else if (f.endsWith('.md') || f.endsWith('.mdx')) {
+          d = parseYamlFrontmatter(raw);
+        } else {
+          continue;
+        }
         if (d.url) seenUrls.add(d.url);
         if (d.github) seenGithubs.add(d.github.toLowerCase());
       } catch {}
