@@ -72,7 +72,7 @@ const badgeClass = badge ? (badgeColors[badge] ?? 'bg-[var(--color-accent-soft)]
       <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-[var(--color-fg-muted)]">
         {author && (
           <>
-            <span class="pointer-events-none">{author}</span>
+            <a href={`/author/${encodeURIComponent(author.toLowerCase())}`} class="pointer-events-auto hover:text-[var(--color-accent)] transition">{author}</a>
             <span class="text-[var(--color-fg-faint)]" aria-hidden="true">·</span>
           </>
         )}

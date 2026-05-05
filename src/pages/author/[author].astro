@@ -1,0 +1,85 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+import { withStars } from '../../lib/github';
+
+const kindBadge: Record<string, string | undefined> = {
+  'mcp-server': 'MCP', 'claude-code-skill': 'Skill', 'cursor-rule': 'Cursor', 'custom-gpt': 'GPT', other: undefined,
+};
+const tagBadgeMap: [string[], string][] = [
+  [['agent', 'autonomous'], 'Agent'], [['ide', 'editor', 'vscode', 'jetbrains'], 'IDE'],
+  [['cli'], 'CLI'], [['framework', 'sdk', 'library'], 'Framework'],
+  [['mcp'], 'MCP'], [['automation'], 'Automation'], [['browser'], 'Browser'],
+];
+function projectBadge(tags: string[]): string | undefined {
+  const lower = new Set(tags.map((t) => t.toLowerCase()));
+  for (const [keys, label] of tagBadgeMap) {
+    if (keys.some((k) => lower.has(k))) return label;
+  }
+  return undefined;
+}
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  const skills = await getCollection('skills');
+  const authors = new Set<string>();
+  for (const e of [...projects, ...skills]) {
+    if (e.data.author) authors.add(e.data.author.toLowerCase());
+  }
+  return [...authors].map((author) => ({ params: { author } }));
+}
+
+const { author } = Astro.params;
+const projects = (await withStars(await getCollection('projects'))).map((e) => ({ ...e, _type: 'project' as const }));
+const skills = (await withStars(await getCollection('skills'))).map((e) => ({ ...e, _type: 'skill' as const }));
+
+const matches = [...projects, ...skills]
+  .filter((e) => e.data.author?.toLowerCase() === author)
+  .sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1));
+
+// Use the original casing from the first match
+const displayName = matches[0]?.data.author ?? author;
+
+function getBadge(entry: typeof matches[0]): string | undefined {
+  if (entry._type === 'skill') return kindBadge[(entry.data as any).kind];
+  return projectBadge(entry.data.tags ?? []);
+}
+---
+
+<Layout title={`${displayName} · vybify`}>
+  <a href="/" class="inline-flex items-center gap-1.5 text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition mb-6">
+    <span aria-hidden="true">&larr;</span> All
+  </a>
+
+  <section class="mb-6">
+    <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-1">
+      {displayName}
+    </h1>
+    <p class="text-[var(--color-fg-muted)]">
+      <span class="tnum font-medium text-[var(--color-fg)]">{matches.length}</span>
+      {matches.length === 1 ? 'project' : 'projects & skills'} on vybify.
+    </p>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+    {matches.map((entry) => (
+      <Card
+        name={entry.data.name}
+        tagline={entry.data.tagline}
+        href={`/${entry._type === 'project' ? 'projects' : 'skills'}/${entry.id}`}
+        url={entry.data.url}
+        github={entry.data.github}
+        author={entry.data.author}
+        tags={entry.data.tags}
+        stars={entry.stars}
+        delta7d={entry.delta7d}
+        featured={entry.data.featured}
+        badge={getBadge(entry)}
+        entryType={entry._type}
+        entrySlug={entry.id}
+      />
+    ))}
+  </div>
+</Layout>

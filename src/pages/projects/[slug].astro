@@ -116,7 +116,7 @@ const deltaStr = formatDelta(delta7d);
       {data.author && (
         <div>
           <dt class="label mb-1">Author</dt>
-          <dd class="text-sm">{data.author}</dd>
+          <dd class="text-sm"><a href={`/author/${encodeURIComponent(data.author.toLowerCase())}`} class="hover:text-[var(--color-accent)] transition">{data.author}</a></dd>
         </div>
       )}
       {data.builtWith && data.builtWith.length > 0 && (

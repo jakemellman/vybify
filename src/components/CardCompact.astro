@@ -57,7 +57,7 @@ const badgeClass = badge ? (badgeColors[badge] ?? 'bg-[var(--color-accent-soft)]
   </p>
 
   <div class="relative pointer-events-none flex items-center justify-between text-xs text-[var(--color-fg-muted)] mt-auto">
-    {author && <span class="truncate">{author}</span>}
+    {author && <a href={`/author/${encodeURIComponent(author.toLowerCase())}`} class="truncate pointer-events-auto hover:text-[var(--color-accent)] transition">{author}</a>}
     <span class="inline-flex items-center gap-1 font-medium text-[var(--color-fg)] tnum shrink-0">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="text-[var(--color-fg-faint)]">
         <path d="M12 2l2.9 6.9L22 10l-5.5 4.8L18 22l-6-3.6L6 22l1.5-7.2L2 10l7.1-1.1L12 2z" />
