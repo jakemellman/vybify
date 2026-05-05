@@ -27,7 +27,7 @@ function parseSkillUrl(url) {
   const path = url.replace(/^https:\/\/skills\.sh\//, '');
   const parts = path.split('/').filter(Boolean);
   if (parts.length !== 3) return null;
-  return { owner: parts[0], repo: parts[1], skill: parts[2] };
+  return { owner: decodeURIComponent(parts[0]), repo: decodeURIComponent(parts[1]), skill: decodeURIComponent(parts[2]) };
 }
 
 const PARSE_INSTALLS_RE = /Weekly Installs[\s\S]{0,500}?"children":"([\d.]+[KMB]?)"/;
