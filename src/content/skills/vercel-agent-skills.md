@@ -13,6 +13,7 @@ tags:
 kind: "claude-code-skill"
 install: "npx skills add vercel-labs/agent-skills"
 featured: true
+starter: true
 addedAt: "2026-04-29"
 ---
 

@@ -77,6 +77,15 @@ const isActive = (p: string) => path === p || path.startsWith(p + '/');
             Skills
           </a>
           <a
+            href="/starter"
+            class:list={[
+              'px-3 py-1.5 rounded-md transition',
+              isActive('/starter') ? 'bg-[var(--color-accent-soft)] text-[var(--color-accent)] font-medium' : 'text-[var(--color-fg-muted)] hover:text-[var(--color-fg)] hover:bg-[var(--color-bg)]',
+            ]}
+          >
+            Essentials
+          </a>
+          <a
             href="/submit"
             class="ml-2 px-3 py-1.5 rounded-md bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition"
           >

@@ -14,5 +14,6 @@ builtWith:
   - Tailwind
   - Radix
 featured: true
+starter: true
 addedAt: "2026-04-29"
 ---

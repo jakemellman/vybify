@@ -11,6 +11,7 @@ tags:
 kind: "claude-code-skill"
 install: npx skills add anthropics/skills
 featured: true
+starter: true
 addedAt: "2026-04-28"
 ---
 

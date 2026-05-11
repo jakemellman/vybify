@@ -9,6 +9,7 @@ tags:
   - firecrawl
 kind: "claude-code-skill"
 install: "npx skills add firecrawl/cli --skill firecrawl"
+starter: true
 addedAt: "2026-04-30"
 ---
 
