@@ -11,5 +11,6 @@ builtWith:
   - Claude
   - GPT
 featured: true
+starter: true
 addedAt: "2026-04-28"
 ---

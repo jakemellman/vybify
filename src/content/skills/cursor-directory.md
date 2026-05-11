@@ -10,6 +10,7 @@ tags:
   - directory
 kind: "cursor-rule"
 featured: true
+starter: true
 addedAt: "2026-04-28"
 ---
 

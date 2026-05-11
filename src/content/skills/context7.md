@@ -11,6 +11,7 @@ tags:
 kind: "mcp-server"
 install: "claude mcp add context7 -- npx -y @upstash/context7-mcp"
 featured: true
+starter: true
 addedAt: "2026-04-28"
 ---
 

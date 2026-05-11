@@ -1,0 +1,136 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import { withStars } from '../lib/github';
+
+const allSkills = await withStars(await getCollection('skills'));
+const allProjects = await withStars(await getCollection('projects'));
+
+const starterSkills = allSkills
+  .filter((e) => e.data.starter)
+  .sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1) || a.data.name.localeCompare(b.data.name));
+
+const starterProjects = allProjects
+  .filter((e) => e.data.starter)
+  .sort((a, b) => (b.stars ?? -1) - (a.stars ?? -1) || a.data.name.localeCompare(b.data.name));
+
+const kindBadge: Record<string, string | undefined> = {
+  'mcp-server': 'MCP',
+  'claude-code-skill': 'Skill',
+  'cursor-rule': 'Cursor',
+  'custom-gpt': 'GPT',
+  other: undefined,
+};
+
+const copyPayload = starterSkills
+  .filter((e) => e.data.install)
+  .map((e) => e.data.install)
+  .join('\n');
+---
+
+<Layout
+  title="Vibe Coding Essentials · vybify"
+  description="The top skills and editors every vibe coder should have. Hand-picked by the Vybify team."
+>
+  <a href="/" class="inline-flex items-center gap-1.5 text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition mb-6">
+    <span aria-hidden="true">&larr;</span> Back
+  </a>
+
+  <section class="mb-10">
+    <h1 class="text-2xl sm:text-3xl font-semibold text-[var(--color-fg)] mb-2">
+      Vibe Coding Essentials
+    </h1>
+    <p class="text-[var(--color-fg-muted)] mb-5 max-w-2xl">
+      The top skills and tools every vibe coder should have installed. Hand-picked by the Vybify team to get you started fast.
+    </p>
+    {copyPayload.length > 0 && (
+      <button
+        id="copy-essentials-btn"
+        data-payload={copyPayload}
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white text-sm font-semibold rounded-lg transition"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span id="copy-essentials-label">Copy all install commands</span>
+      </button>
+    )}
+  </section>
+
+  {starterSkills.length > 0 && (
+    <section class="mb-10">
+      <h2 class="text-lg font-semibold mb-3">Essential Skills</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {starterSkills.map((entry) => (
+          <Card
+            name={entry.data.name}
+            tagline={entry.data.tagline}
+            href={`/skills/${entry.id}`}
+            url={entry.data.url}
+            github={entry.data.github}
+            author={entry.data.author}
+            tags={entry.data.tags ?? []}
+            stars={entry.stars}
+            delta7d={entry.delta7d}
+            badge={kindBadge[entry.data.kind]}
+            featured={entry.data.featured}
+            entryType="skill"
+            entrySlug={entry.id}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {starterProjects.length > 0 && (
+    <section class="mb-10">
+      <h2 class="text-lg font-semibold mb-3">Essential Tools & Editors</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {starterProjects.map((entry) => (
+          <Card
+            name={entry.data.name}
+            tagline={entry.data.tagline}
+            href={`/projects/${entry.id}`}
+            url={entry.data.url}
+            github={entry.data.github}
+            author={entry.data.author}
+            tags={entry.data.tags ?? []}
+            stars={entry.stars}
+            delta7d={entry.delta7d}
+            featured={entry.data.featured}
+            entryType="project"
+            entrySlug={entry.id}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {starterSkills.length === 0 && starterProjects.length === 0 && (
+    <p class="text-[var(--color-fg-muted)]">
+      No essentials yet — check back soon.
+    </p>
+  )}
+
+  <script>
+    const btn = document.getElementById('copy-essentials-btn') as HTMLButtonElement | null;
+    const label = document.getElementById('copy-essentials-label') as HTMLElement | null;
+    if (btn && label) {
+      btn.addEventListener('click', async () => {
+        const payload = btn.dataset.payload ?? '';
+        try {
+          await navigator.clipboard.writeText(payload);
+          label.textContent = 'Copied!';
+          setTimeout(() => {
+            label.textContent = 'Copy all install commands';
+          }, 2000);
+        } catch (err) {
+          console.error('Clipboard write failed', err);
+        }
+      });
+    }
+  </script>
+</Layout>

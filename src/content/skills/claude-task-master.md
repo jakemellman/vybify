@@ -10,6 +10,7 @@ tags:
   - workflow
 kind: "claude-code-skill"
 install: "npm install -g task-master-ai"
+starter: true
 addedAt: "2026-04-28"
 ---
 
