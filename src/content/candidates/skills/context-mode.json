@@ -1,0 +1,16 @@
+{
+  "name": "context-mode",
+  "tagline": "Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 15 platforms",
+  "url": "https://context-mode.com",
+  "github": "mksglu/context-mode",
+  "author": "mksglu",
+  "tags": [
+    "antigravity",
+    "claude",
+    "claude-code",
+    "claude-code-hooks",
+    "claude-code-plugins"
+  ],
+  "addedAt": "2026-05-18",
+  "kind": "mcp-server"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Agent-Reach",
+  "tagline": "Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees.",
+  "url": "https://github.com/Panniantong/Agent-Reach",
+  "github": "Panniantong/Agent-Reach",
+  "author": "Panniantong",
+  "tags": [
+    "agent-infrastructure",
+    "ai-agent",
+    "ai-search",
+    "automation",
+    "bilibili"
+  ],
+  "addedAt": "2026-05-18",
+  "kind": "mcp-server"
+}

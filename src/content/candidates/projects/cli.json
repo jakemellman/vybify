@@ -1,0 +1,16 @@
+{
+  "name": "cli",
+  "tagline": "Google Workspace CLI — one command-line tool for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more. Dynamically built from Google Discovery Service. I",
+  "url": "https://developers.google.com/workspace",
+  "github": "googleworkspace/cli",
+  "author": "googleworkspace",
+  "tags": [
+    "agent-skills",
+    "ai-agent",
+    "automation",
+    "cli",
+    "discovery-api"
+  ],
+  "addedAt": "2026-05-18",
+  "builtWith": []
+}

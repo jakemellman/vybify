@@ -1,0 +1,16 @@
+{
+  "name": "taste-skill",
+  "tagline": "Taste-Skill - gives your AI good taste. stops the AI from generating boring, generic slop ",
+  "url": "https://tasteskill.dev",
+  "github": "Leonxlnx/taste-skill",
+  "author": "Leonxlnx",
+  "tags": [
+    "agent",
+    "ai",
+    "claude",
+    "claude-code",
+    "codex"
+  ],
+  "addedAt": "2026-05-18",
+  "kind": "claude-code-skill"
+}

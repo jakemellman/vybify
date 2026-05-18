@@ -1,0 +1,15 @@
+{
+  "name": "OpenCLI",
+  "tagline": "Make Any Website & Tool Your CLI. A universal CLI Hub and AI-native runtime. Transform any website, Electron app, or local binary into a standardized command-li",
+  "url": "https://opencli.info/",
+  "github": "jackwener/OpenCLI",
+  "author": "jackwener",
+  "tags": [
+    "ai-agent",
+    "ai-agents",
+    "ai-tools",
+    "cli"
+  ],
+  "addedAt": "2026-05-18",
+  "builtWith": []
+}

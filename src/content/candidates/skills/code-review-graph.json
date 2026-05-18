@@ -1,0 +1,16 @@
+{
+  "name": "code-review-graph",
+  "tagline": "Local knowledge graph for Claude Code. Builds a persistent map of your codebase so Claude reads only what matters — 6.8× fewer tokens on reviews and up to 49× o",
+  "url": "https://code-review-graph.com",
+  "github": "tirth8205/code-review-graph",
+  "author": "tirth8205",
+  "tags": [
+    "ai-coding",
+    "claude",
+    "claude-code",
+    "code-review",
+    "graphrag"
+  ],
+  "addedAt": "2026-05-18",
+  "kind": "mcp-server"
+}

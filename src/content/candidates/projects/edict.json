@@ -1,0 +1,16 @@
+{
+  "name": "edict",
+  "tagline": "🏛️ 三省六部制 · OpenClaw Multi-Agent Orchestration System — 9 specialized AI agents with real-time dashboard, model config, and full audit trails",
+  "url": "https://openclaw.ai",
+  "github": "cft0808/edict",
+  "author": "cft0808",
+  "tags": [
+    "ai-agents",
+    "ai-orchestration",
+    "autonomous-agents",
+    "claude",
+    "dashboard"
+  ],
+  "addedAt": "2026-05-18",
+  "builtWith": []
+}

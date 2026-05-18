@@ -1,0 +1,16 @@
+{
+  "name": "openfang",
+  "tagline": "Open-source Agent Operating System",
+  "url": "https://www.openfang.sh/",
+  "github": "RightNow-AI/openfang",
+  "author": "RightNow-AI",
+  "tags": [
+    "agent-framework",
+    "ai-agents",
+    "llm",
+    "mcp",
+    "open-source"
+  ],
+  "addedAt": "2026-05-18",
+  "kind": "mcp-server"
+}
